@@ -1,0 +1,156 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="ch.ccapps.android.zeneggen.activity.tourismus.EventActivity">
+    <LinearLayout
+        android:id="@+id/participate_buttons"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/participation_header"
+            style="@style/SectionHeader"
+            android:text="@string/event_participation_title"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="6dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="10dp">
+
+            <IconTextView
+                android:id="@+id/participate"
+                style="@style/ParticipateButton.Inactive"
+                android:onClick="onParticipateClick"
+                android:text="{fa-thumbs-up}"/>
+
+            <IconTextView
+                android:id="@+id/not_participate"
+                style="@style/ParticipateButton.Inactive"
+                android:onClick="onNotParticipateClick"
+                android:text="{fa-thumbs-down}"/>
+            <IconTextView
+                android:id="@+id/not_sure"
+                style="@style/ParticipateButton.Active"
+                android:onClick="onNotSureClick"
+                android:text="{fa-question}"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    <ScrollView
+        android:layout_below="@+id/participate_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <View style="@style/SettingsLine.Top"/>
+            <View style="@style/SettingsLine"/>
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/date_header"
+                style="@style/SectionHeader"
+                android:text="@string/event_when"/>
+
+
+            <TextView
+                android:id="@+id/event_date_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ContentText"
+                android:text="12.03.2014"
+                />
+
+            <View style="@style/SettingsLine.Top"/>
+            <View style="@style/SettingsLine"/>
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/location_header"
+                style="@style/SectionHeader"
+                android:text="@string/event_location"/>
+
+
+
+            <TextView
+                android:id="@+id/event_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ContentText"
+                android:text="Mehrzweckhalle, 3934 Zeneggen"/>
+
+            <View style="@style/SettingsLine.Top"/>
+            <View style="@style/SettingsLine"/>
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/organizer_header"
+                style="@style/SectionHeader"
+                android:text="@string/event_organized_by"/>
+
+
+            <TextView
+                android:id="@+id/event_organizer_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ContentText"
+                android:text="SSC Zeneggen"/>
+
+
+            <LinearLayout
+                android:id="@+id/event_organizer_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ContentText"
+                android:orientation="horizontal">
+
+                <IconTextView
+                    android:id="@+id/tel_icon"
+                    style="@style/IconTVActions"
+                    android:layout_marginRight="10dp"
+                    android:text="{fa-phone}"/>
+
+                <TextView
+                    android:id="@+id/event_organizer_tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    android:textSize="18dp"
+                    android:textColor="@color/textColor"
+                    android:text="079 236 39 76"/>
+            </LinearLayout>
+
+            <View style="@style/SettingsLine.Top"/>
+            <View style="@style/SettingsLine"/>
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/description_header"
+                style="@style/SectionHeader"
+                android:text="@string/event_what"/>
+
+            <TextView
+                android:id="@+id/event_descr_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                style="@style/Text.Big.Slim"
+                android:text="aas hellao alskfa oaiwer lakjsdf oaierla ise iwe "/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

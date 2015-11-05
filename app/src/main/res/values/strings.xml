@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2015 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+-->
+
+<resources>
+    <string name="app_name">Zeneggen Info</string>
+
+  <string name="cheese_ipsum">Jarlsberg lancashire edam. Dolcelatte hard cheese brie st. agur blue
+    cheese caerphilly bavarian bergkase cheese and biscuits mascarpone. Cheeseburger swiss bavarian
+    bergkase cream cheese fromage frais cheesy feet port-salut airedale. St. agur blue cheese rubber
+    cheese caerphilly cheddar cheesecake cream cheese manchego lancashire. Roquefort squirty cheese
+    the big cheese.</string>
+  <string name="checkin">Checkin</string>
+  <string name="menu_settings">Settings</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="button_gemeinde">Gemeinde</string>
+    <string name="button_tourismus">Tourismus</string>
+
+    <string name="menu_activities">Aktivitäten</string>
+    <string name="menu_events">Events</string>
+    <string name="menu_anfahrt">Anfahrt</string>
+    <string name="menu_unterkunft">Unterkunft / Restaurant</string>
+
+    <string name="menu_history">Geschichte</string>
+    <string name="menu_lage">Lage</string>
+    <string name="menu_info">Info</string>
+    <string name="menu_news">Neuigkeiten</string>
+
+    <string name="title_activity_tourismums_main">Tourismus</string>
+    <string name="title_activity_gemeinde_main">Gemeinde</string>
+    <string name="title_activity_action_bar">ActionBarActivity</string>
+    <string name="title_activity_action_tab_bar">ActionTabBarActivity</string>
+    <string name="title_activity_hotel_restaurant">Hotels &amp; Restaurants</string>
+
+  <!-- Hotel Restaurants -->
+  <string name="phone">Tel:</string>
+  <string name="address">Addresse:</string>
+    <string name="title_activity_drive_to">DriveToActivity</string>
+    <string name="title_activity_events">Events</string>
+    <string name="title_activity_activities">ActivitiesActivity</string>
+    <string name="title_activity_view_point">Sehenswürdigkeiten</string>
+    <string name="title_activity_numbers">Zahlen</string>
+    <string name="title_activity_event">EventActivity</string>
+
+  <!-- Events -->
+  <string name="event_i_participate">Ich nehme teil!</string>
+  <string name="event_i_dont_participate">Ich nehme nicht teil.</string>
+  <string name="event_particip_info_remove">Teilnahme Informationen löschen.</string>
+  <string name="event_location">Wo?</string>
+  <string name="event_when">Wann?</string>
+  <string name="event_organized_by">Von wem?</string>
+  <string name="event_participation_title">Nimmst du teil?</string>
+  <string name="event_who">Wer?</string>
+  <string name="event_what">Was?</string>
+
+</resources>

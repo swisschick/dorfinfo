@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:gravity="center_vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/event_image"
+                android:layout_margin="5dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/zeneggne_summer"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:id="@+id/event_time_tv"
+                    style="@style/Text.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="22.09.2015"/>
+
+                <TextView
+                    android:id="@+id/event_title_tv"
+                    style="@style/Text.Big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/event_time_tv"
+                    android:text="Unihockey Turnier"/>
+
+
+
+                <TextView
+                    android:id="@+id/event_location_tv"
+                    style="@style/Text.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/event_title_tv"
+                    android:text="Mehrzweckhalle"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="bottom"
+                    android:gravity="bottom"
+                    android:layout_marginTop="20dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/nbr_person"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Text"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="24sp"
+                        android:layout_gravity="bottom"
+                        android:gravity="bottom"
+                        android:text="3"/>
+
+                    <android.widget.IconTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/person_icon"
+                        style="@style/Text"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="26sp"
+                        android:layout_gravity="bottom"
+                        android:gravity="bottom"
+                        android:text="{fa-child}"
+                        />
+                </LinearLayout>
+
+
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>
