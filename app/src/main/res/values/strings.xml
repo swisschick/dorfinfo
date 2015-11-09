@@ -69,5 +69,9 @@
   <string name="event_participation_title">Nimmst du teil?</string>
   <string name="event_who">Wer?</string>
   <string name="event_what">Was?</string>
+  <string name="event_maybe">Vielleicht</string>
+  <string name="event_no">Nein</string>
+  <string name="event_yes">Ja</string>
+  <string name="event_nbr_participants">%s Teilnehmer</string>
 
 </resources>

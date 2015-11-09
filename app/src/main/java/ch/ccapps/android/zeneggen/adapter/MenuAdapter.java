@@ -2,6 +2,7 @@ package ch.ccapps.android.zeneggen.adapter;
 
 import android.content.Context;
 import android.media.Image;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +27,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     private boolean isSideMenu = false;
 
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         if (isSideMenu){
              v = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_side_left_item, parent, false);
@@ -38,7 +40,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Menu menu = getValueAt(position);
         holder.mTextView.setText(menu.getTitle());
         if (menu.isSubMenu()){
@@ -64,7 +66,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(@NonNull View v) {
                 Context context = v.getContext();
                 context.startActivity(menu.getIntent());
             }
@@ -95,12 +97,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        @NonNull
         public final View mView;
+        @NonNull
         public final IconTextView mIconTextView;
+        @NonNull
         public final ImageView mImageView;
+        @NonNull
         public final TextView mTextView;
 
-        public ViewHolder(View view) {
+        public ViewHolder(@NonNull View view) {
             super(view);
             mView = view;
             mImageView = (ImageView) view.findViewById(R.id.iconview);
@@ -108,6 +114,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
             mTextView = (TextView) view.findViewById(R.id.title);
         }
 
+        @NonNull
         @Override
         public String toString() {
             return super.toString() + " '" + mTextView.getText();

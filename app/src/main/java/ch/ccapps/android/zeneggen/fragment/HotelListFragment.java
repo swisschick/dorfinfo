@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,12 +48,14 @@ import ch.ccapps.android.zeneggen.adapter.holder.ViewHolder;
 import ch.ccapps.android.zeneggen.model.Hotel;
 
 public class HotelListFragment extends Fragment implements SectionRecyclerAdapter.ViewHolderCreator, SectionRecyclerAdapter.SectionAdapterClickListener<Hotel> {
+    @Nullable
     private HashMap<String, List<Hotel>> mHotels;
 
+    @NonNull
     public static HotelListFragment newInstance(HashMap<String, List<Hotel>> hotels) {
         HotelListFragment fragment = new HotelListFragment();
         Bundle b = new Bundle();
-        b.putSerializable("hotels", (Serializable) hotels);
+        b.putSerializable("hotels", hotels);
         fragment.setArguments(b);
         return fragment;
     }
@@ -67,14 +70,14 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView rv = (RecyclerView) inflater.inflate(
                 R.layout.fragment_hotel_list, container, false);
         setupRecyclerView(rv);
         return rv;
     }
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         List<String> sections = new ArrayList<String>();
         for (String section : mHotels.keySet()){
@@ -89,7 +92,8 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
         recyclerView.addItemDecoration(new DividerItemDecoration(HotelListFragment.this.getActivity(), null));
     }
 
-    private List<String> getRandomSublist(String[] array, int amount) {
+    @NonNull
+    private List<String> getRandomSublist(@NonNull String[] array, int amount) {
         ArrayList<String> list = new ArrayList<>(amount);
         Random random = new Random();
         while (list.size() < amount) {
@@ -98,8 +102,9 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
         return list;
     }
 
+    @Nullable
     @Override
-    public ViewHolder createViewHolderFor(ViewGroup parent, int type) {
+    public ViewHolder createViewHolderFor(@NonNull ViewGroup parent, int type) {
         if (type == SectionRecyclerAdapter.DATA_TYPE){
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_item, parent, false);
@@ -130,7 +135,7 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     public static class SectionViewHolder extends ViewHolder<String>{
         TextView mHeader;
 
-        public SectionViewHolder(View view) {
+        public SectionViewHolder(@NonNull View view) {
             super(view);
             mHeader = (TextView)view.findViewById(R.id.header);
 
@@ -151,12 +156,16 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     public static class HotelRestViewHolder extends ViewHolder<Hotel> {
         public Hotel mHotel;
 
+        @NonNull
         public final View mView;
+        @NonNull
         public final ImageView mImageView;
+        @NonNull
         public final TextView mTextView;
+        @NonNull
         public final TextView mSubText;
 
-        public HotelRestViewHolder(View view) {
+        public HotelRestViewHolder(@NonNull View view) {
             super(view);
             mView = view;
             mImageView = (ImageView) view.findViewById(R.id.avatar);
@@ -164,13 +173,14 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
             mSubText = (TextView) view.findViewById(R.id.hotel_submenu_title);
         }
 
+        @NonNull
         @Override
         public String toString() {
             return super.toString() + " '" + mTextView.getText();
         }
 
         @Override
-        public void bindData(Hotel data) {
+        public void bindData(@NonNull Hotel data) {
             mHotel = data;
             Glide.with(mImageView.getContext())
                     .load(data.getDrawableResource())

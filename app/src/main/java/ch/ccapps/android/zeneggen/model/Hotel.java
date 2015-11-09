@@ -2,6 +2,7 @@ package ch.ccapps.android.zeneggen.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.io.Serializable;
@@ -23,7 +24,7 @@ public class Hotel implements Parcelable, Serializable{
     private String link;
     private String email;
     private String plz;
-    private List<String> type = new ArrayList<String>();
+    private List<String> type = new ArrayList<>();
 
     public Hotel(){}
 
@@ -52,6 +53,7 @@ public class Hotel implements Parcelable, Serializable{
     }
 
 
+    @NonNull
     public static List<Hotel> showHotels(){
         ArrayList<String> hotelOnly = new ArrayList<String>();
         hotelOnly.add("Hotel");
@@ -179,16 +181,18 @@ public class Hotel implements Parcelable, Serializable{
     }
 
     public static final Parcelable.Creator<Hotel> CREATOR  = new Parcelable.Creator<Hotel>() {
-        public Hotel createFromParcel(Parcel in) {
+        @NonNull
+        public Hotel createFromParcel(@NonNull Parcel in) {
             return new Hotel(in);
         }
 
+        @NonNull
         public Hotel[] newArray(int size) {
             return new Hotel[size];
         }
     };
 
-    private Hotel(Parcel in) {
+    private Hotel(@NonNull Parcel in) {
         setName(in.readString());
         setDrawableResource(in.readInt());
         setDescription(in.readString());
@@ -202,7 +206,7 @@ public class Hotel implements Parcelable, Serializable{
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(this.name);
         dest.writeInt(this.getDrawableResource());
         dest.writeString(this.description);

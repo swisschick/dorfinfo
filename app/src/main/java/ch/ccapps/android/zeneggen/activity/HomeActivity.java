@@ -1,6 +1,7 @@
 package ch.ccapps.android.zeneggen.activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -52,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
         loadBackdrop();
     }
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         MenuAdapter sideMenuAdapter = new MenuAdapter(ch.ccapps.android.zeneggen.model.Menu.sideMenu(this), true);
         recyclerView.setAdapter(sideMenuAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
@@ -72,7 +73,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -92,11 +93,11 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
+    private void setupDrawerContent(@NonNull NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
 
                         if (menuItem.getItemId() == R.id.nav_hotels) {
@@ -111,13 +112,13 @@ public class HomeActivity extends AppCompatActivity {
                 });
     }
 
-    public void onGemeinde(View v){
+    public void onGemeinde(@NonNull View v){
         Intent intent = new Intent(v.getContext(), TourismumsMain.class);
         intent.putExtra(TourismumsMain.MENU_TYPE,"gemeinde");
         startActivity(intent);
     }
 
-    public void onTourismus(View v){
+    public void onTourismus(@NonNull View v){
         Intent intent = new Intent(v.getContext(), TourismumsMain.class);
         intent.putExtra(TourismumsMain.MENU_TYPE,"tourismus");
         startActivity(intent);

@@ -1,5 +1,6 @@
 package ch.ccapps.android.zeneggen.activity.tourismus;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,7 +38,7 @@ public class EventsActivity extends ActionBarActivity {
         setupRecyclerView(eventsRV);
     }
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         eventAdapter = new EventAdapter(eventsList);
         recyclerView.setAdapter(eventAdapter);

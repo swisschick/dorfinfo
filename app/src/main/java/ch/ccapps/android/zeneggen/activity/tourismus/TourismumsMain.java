@@ -1,6 +1,7 @@
 package ch.ccapps.android.zeneggen.activity.tourismus;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBar;
@@ -26,6 +27,7 @@ public class TourismumsMain extends ActionBarActivity {
     private MenuAdapter adapter;
     private RecyclerView menulistview;
 
+    @NonNull
     public static String MENU_TYPE = "menu_type";
 
 
@@ -58,7 +60,7 @@ public class TourismumsMain extends ActionBarActivity {
     }
 
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
         //recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),
@@ -73,7 +75,7 @@ public class TourismumsMain extends ActionBarActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.

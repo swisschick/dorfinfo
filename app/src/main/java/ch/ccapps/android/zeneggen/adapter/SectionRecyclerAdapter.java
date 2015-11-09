@@ -1,5 +1,7 @@
 package ch.ccapps.android.zeneggen.adapter;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ public class SectionRecyclerAdapter<T> extends  RecyclerView.Adapter<ViewHolder>
 
     HashMap<String, List<T>> sectionedData;
     List<String> sectionOrder;
+    @NonNull
     List<Data> data = new ArrayList<>();
     private SectionAdapterClickListener listener;
 
@@ -81,13 +84,14 @@ public class SectionRecyclerAdapter<T> extends  RecyclerView.Adapter<ViewHolder>
     }
 
 
+    @Nullable
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return this.viewHolderCreator.createViewHolderFor(parent, viewType);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Data data = this.data.get(position);
         holder.bindClickListener(data.listener);
         holder.bindData(data.dataObject);
@@ -104,11 +108,12 @@ public class SectionRecyclerAdapter<T> extends  RecyclerView.Adapter<ViewHolder>
     }
 
     public interface ViewHolderCreator{
-        public ViewHolder createViewHolderFor(ViewGroup parent, int type);
+        @Nullable
+        ViewHolder createViewHolderFor(ViewGroup parent, int type);
     }
 
     public interface SectionAdapterClickListener<T>{
-        public void onSectionClicked(String section);
-        public void onItemInSecRecViewClicked(T dataobject);
+        void onSectionClicked(String section);
+        void onItemInSecRecViewClicked(T dataobject);
     }
 }

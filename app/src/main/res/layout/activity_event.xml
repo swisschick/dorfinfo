@@ -5,10 +5,24 @@
     tools:context="ch.ccapps.android.zeneggen.activity.tourismus.EventActivity">
     <LinearLayout
         android:id="@+id/participate_buttons"
+
         android:layout_alignParentTop="true"
+        android:paddingTop="@dimen/activity_vertical_margin"
         android:orientation="vertical"
+        android:background="@color/greyBrightest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/participantText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="@string/event_nbr_participants"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/participation_header"
@@ -27,23 +41,37 @@
 
             <IconTextView
                 android:id="@+id/participate"
-                style="@style/ParticipateButton.Inactive"
+                android:enabled="true"
+                style="@style/ParticipateButton"
                 android:onClick="onParticipateClick"
                 android:text="{fa-thumbs-up}"/>
 
             <IconTextView
                 android:id="@+id/not_participate"
-                style="@style/ParticipateButton.Inactive"
+                android:enabled="true"
+                style="@style/ParticipateButton"
                 android:onClick="onNotParticipateClick"
                 android:text="{fa-thumbs-down}"/>
             <IconTextView
                 android:id="@+id/not_sure"
-                style="@style/ParticipateButton.Active"
+                android:enabled="false"
+                style="@style/ParticipateButton"
                 android:onClick="onNotSureClick"
                 android:text="{fa-question}"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/participation_text"
+                android:text="@string/event_maybe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="16dp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/yellowDark"
+                android:layout_gravity="center|right"
+                android:gravity="center|right"/>
 
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -57,11 +85,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:paddingTop="14dp"
             android:orientation="vertical">
 
-            <View style="@style/SettingsLine.Top"/>
-            <View style="@style/SettingsLine"/>
 
             <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/date_header"
@@ -77,8 +103,7 @@
                 android:text="12.03.2014"
                 />
 
-            <View style="@style/SettingsLine.Top"/>
-            <View style="@style/SettingsLine"/>
+            <View style="@style/SettingsLine.margin"/>
             <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/location_header"
                 style="@style/SectionHeader"
@@ -93,8 +118,7 @@
                 style="@style/ContentText"
                 android:text="Mehrzweckhalle, 3934 Zeneggen"/>
 
-            <View style="@style/SettingsLine.Top"/>
-            <View style="@style/SettingsLine"/>
+            <View style="@style/SettingsLine.margin"/>
             <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/organizer_header"
                 style="@style/SectionHeader"
@@ -110,7 +134,7 @@
 
 
             <LinearLayout
-                android:id="@+id/event_organizer_ll"
+                android:id="@+id/event_organizer_tel_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/ContentText"
@@ -128,13 +152,12 @@
                     android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:gravity="center_vertical"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textColor="@color/textColor"
                     android:text="079 236 39 76"/>
             </LinearLayout>
 
-            <View style="@style/SettingsLine.Top"/>
-            <View style="@style/SettingsLine"/>
+            <View style="@style/SettingsLine.margin"/>
             <TextView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/description_header"
                 style="@style/SectionHeader"
@@ -144,8 +167,20 @@
                 android:id="@+id/event_descr_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                style="@style/Text.Big.Slim"
+                style="@style/ContentText"
+                android:text="aas hellao alskfa oaiwer lakjsdf oaierla ise iwe "/>
+
+            <View style="@style/SettingsLine.margin"/>
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/header_event_who"
+                style="@style/SectionHeader"
+                android:text="@string/event_who"/>
+
+            <TextView
+                android:id="@+id/event_who_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/ContentText"
                 android:text="aas hellao alskfa oaiwer lakjsdf oaierla ise iwe "/>
 
         </LinearLayout>

@@ -1,6 +1,7 @@
 package ch.ccapps.android.zeneggen.util;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -17,7 +18,8 @@ public class HotelLocalStore {
 
     private static List<Hotel> hotels;
 
-    public static HashMap<String, HashMap<String, List<Hotel>>> orderedHotelDataFromList(List<Hotel> hotels){
+    @NonNull
+    public static HashMap<String, HashMap<String, List<Hotel>>> orderedHotelDataFromList(@NonNull List<Hotel> hotels){
         HashMap<String, HashMap<String, List<Hotel>>> adapterData = new HashMap<String, HashMap<String, List<Hotel>>>();
         for (Hotel hotel : hotels){
             for (String type : hotel.getType()){
@@ -33,6 +35,7 @@ public class HotelLocalStore {
         return adapterData;
     }
 
+    @NonNull
     public static HashMap<String, HashMap<String, List<Hotel>>> getDebugData(){
         return orderedHotelDataFromList(Hotel.showHotels());
     }

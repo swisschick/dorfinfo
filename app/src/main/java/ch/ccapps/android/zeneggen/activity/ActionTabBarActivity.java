@@ -1,6 +1,7 @@
 package ch.ccapps.android.zeneggen.activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,6 +27,7 @@ import ch.ccapps.android.zeneggen.fragment.HotelListFragment;
 public class ActionTabBarActivity extends AppCompatActivity {
 
     protected Adapter adapter;
+    private final int HOME_KEY = 11;
 
     private final static String TAG = ActionTabBarActivity.class.getSimpleName();
 
@@ -38,7 +40,7 @@ public class ActionTabBarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(new IconDrawable(this, Iconify.IconValue.fa_home).colorRes(R.color.white).actionBarSize());
+        ab.setHomeAsUpIndicator(new IconDrawable(this, Iconify.IconValue.fa_arrow_left).colorRes(R.color.white).actionBarSize());
         ab.setDisplayHomeAsUpEnabled(true);
 
         adapter = new Adapter(getSupportFragmentManager());
@@ -54,6 +56,10 @@ public class ActionTabBarActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, HOME_KEY, 0, "").setIcon(new IconDrawable(this, Iconify.IconValue.fa_home).colorRes(R.color.white).actionBarSize())
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        //getMenuInflater().inflate(R.menu.menu_action_bar, menu);
         return true;
     }
 
@@ -65,11 +71,17 @@ public class ActionTabBarActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
+                finish();
+                return true;
+            case HOME_KEY:
+                Intent intent1 = new Intent(this, HomeActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent1);
                 finish();
                 return true;
             default:

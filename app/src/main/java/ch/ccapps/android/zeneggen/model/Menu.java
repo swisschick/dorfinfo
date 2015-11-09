@@ -2,6 +2,7 @@ package ch.ccapps.android.zeneggen.model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +79,7 @@ public class Menu {
         this.iconText = iconText;
     }
 
+    @NonNull
     public static List<Menu> tourismusMenu(Context context, boolean isSubmenu){
         List<Menu> menuItems = new ArrayList<Menu>();
         Menu m1 = new Menu("Anfahrt", "{fa-road}", new Intent(context, DriveToActivity.class),isSubmenu);
@@ -93,6 +95,7 @@ public class Menu {
         return menuItems;
     }
 
+    @NonNull
     public static List<Menu> gemeindeMenu(Context context, boolean isSubmenu){
         List<Menu> menuItems = new ArrayList<Menu>();
         Menu m1 = new Menu("Lage", "{fa-map-marker}", new Intent(context, HotelRestaurantActivity.class),isSubmenu);
@@ -106,6 +109,7 @@ public class Menu {
         return menuItems;
     }
 
+    @NonNull
     public static List<Menu> sideMenu(Context context){
         List<Menu> menuItems = new ArrayList<Menu>();
         Menu m1 = new Menu("Tourismums", null, new Intent(context, HotelRestaurantActivity.class),false);
