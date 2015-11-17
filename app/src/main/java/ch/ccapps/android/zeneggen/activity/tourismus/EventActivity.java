@@ -2,24 +2,23 @@ package ch.ccapps.android.zeneggen.activity.tourismus;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.IconTextView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import org.androidannotations.annotations.EActivity;
-
 import java.text.SimpleDateFormat;
 
 import ch.ccapps.android.zeneggen.R;
 import ch.ccapps.android.zeneggen.activity.ActionBarActivity;
+import ch.ccapps.android.zeneggen.adapter.DividerItemDecoration;
+import ch.ccapps.android.zeneggen.adapter.EventParticipantAdapter;
 import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.model.User;
 
 public class EventActivity extends ActionBarActivity {
 
@@ -42,6 +41,10 @@ public class EventActivity extends ActionBarActivity {
 
     private TextView tv_participation;
 
+    private TextView participsTV;
+    private TextView nonParticipsTV;
+
+
 
     public static final String EVENT_KEY="event_to_show";
 
@@ -61,9 +64,13 @@ public class EventActivity extends ActionBarActivity {
             eventLocation = (TextView) findViewById(R.id.event_location);
             organizerName = (TextView) findViewById(R.id.event_organizer_name);
             organizerPhone = (TextView) findViewById(R.id.event_organizer_tel);
-            eventPhoneLL = (LinearLayout) findViewById(R.id.event_organizer_tel_ll);
-            participantsTV = (TextView) findViewById(R.id.participantText);
 
+            eventPhoneLL = (LinearLayout) findViewById(R.id.event_organizer_tel_ll);
+
+            participsTV = (TextView) findViewById(R.id.participsTV);
+            nonParticipsTV = (TextView) findViewById(R.id.nonParticipsTV);
+
+            participantsTV = (TextView) findViewById(R.id.participantText);
 
             ict_participate = (IconTextView) findViewById(R.id.participate);
             ict_not_participate = (IconTextView) findViewById(R.id.not_participate);
@@ -72,6 +79,22 @@ public class EventActivity extends ActionBarActivity {
             tv_participation = (TextView) findViewById(R.id.participation_text);
 
             //ict_not_sure.setBackgroundResource(R.drawable.red_button_active);
+
+            String participants = "";
+            for(User us :myEvent.getParticipants()){
+                participants += us.getNickName()+"\n";
+            }
+            participants+="Unbekannt: "+myEvent.getAnonymParticipants();
+
+            participsTV.setText(participants);
+
+            String nonparticipants = "";
+            for(User us :myEvent.getNonParticipants()){
+                nonparticipants += us.getNickName()+"\n";
+            }
+            nonparticipants+="Unbekannt: "+myEvent.getAnonymNonParticipants();
+            nonParticipsTV.setText(nonparticipants);
+
 
             participantsTV.setText(String.format(getString(R.string.event_nbr_participants),""+myEvent.getNbrParticipants()));
             eventDescrTV.setText(myEvent.getDescription());
@@ -94,6 +117,11 @@ public class EventActivity extends ActionBarActivity {
                 organizerPhone.setText(myEvent.getOrganizerPhone());
             }
         }
+    }
+
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
     }
 
 

@@ -42,6 +42,7 @@
             <IconTextView
                 android:id="@+id/participate"
                 android:enabled="true"
+                android:clickable="true"
                 style="@style/ParticipateButton"
                 android:onClick="onParticipateClick"
                 android:text="{fa-thumbs-up}"/>
@@ -50,11 +51,13 @@
                 android:id="@+id/not_participate"
                 android:enabled="true"
                 style="@style/ParticipateButton"
+                android:clickable="true"
                 android:onClick="onNotParticipateClick"
                 android:text="{fa-thumbs-down}"/>
             <IconTextView
                 android:id="@+id/not_sure"
                 android:enabled="false"
+                android:clickable="true"
                 style="@style/ParticipateButton"
                 android:onClick="onNotSureClick"
                 android:text="{fa-question}"/>
@@ -176,12 +179,60 @@
                 style="@style/SectionHeader"
                 android:text="@string/event_who"/>
 
-            <TextView
-                android:id="@+id/event_who_list"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/ContentText"
-                android:text="aas hellao alskfa oaiwer lakjsdf oaierla ise iwe "/>
+                android:orientation="horizontal">
+
+                <IconTextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:textSize="28sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="{fa-thumbs-up}"/>
+
+                <IconTextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:textSize="28sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="{fa-thumbs-down}"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/participsTV"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/nonParticipsTV"
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="center" />
+
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 

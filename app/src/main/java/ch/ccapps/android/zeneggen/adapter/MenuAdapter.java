@@ -1,6 +1,7 @@
 package ch.ccapps.android.zeneggen.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -44,7 +45,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         final Menu menu = getValueAt(position);
         holder.mTextView.setText(menu.getTitle());
         if (menu.isSubMenu()){
-            holder.mTextView.setTextSize(10);
+            holder.mTextView.setTextSize(14);
+            holder.mTextView.setTypeface(holder.mTextView.getTypeface(), Typeface.DEFAULT.NORMAL);
+
+
         }
 
         if (menu.getIconText() == null && menu.getIconResource() == -1){

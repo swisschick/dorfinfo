@@ -11,7 +11,9 @@ public class User implements Serializable{
 
     public User(){}
 
-    public User(String name){}
+    public User(String name){
+        this.nickName = name;
+    }
 
     public String getNickName() {
         return nickName;
