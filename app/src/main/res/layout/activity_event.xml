@@ -91,74 +91,124 @@
             android:paddingTop="14dp"
             android:orientation="vertical">
 
-
-            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/date_header"
-                style="@style/SectionHeader"
-                android:text="@string/event_when"/>
-
-
-            <TextView
-                android:id="@+id/event_date_tv"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ContentText"
-                android:text="12.03.2014"
-                />
+                android:layout_height="wrap_content">
+                <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/date_header"
+                    style="@style/SectionHeader"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/event_when"/>
 
-            <View style="@style/SettingsLine.margin"/>
-            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/location_header"
-                style="@style/SectionHeader"
-                android:text="@string/event_location"/>
-
-
-
-            <TextView
-                android:id="@+id/event_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ContentText"
-                android:text="Mehrzweckhalle, 3934 Zeneggen"/>
-
-            <View style="@style/SettingsLine.margin"/>
-            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/organizer_header"
-                style="@style/SectionHeader"
-                android:text="@string/event_organized_by"/>
-
-
-            <TextView
-                android:id="@+id/event_organizer_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ContentText"
-                android:text="SSC Zeneggen"/>
-
-
-            <LinearLayout
-                android:id="@+id/event_organizer_tel_ll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/ContentText"
-                android:orientation="horizontal">
-
-                <IconTextView
-                    android:id="@+id/tel_icon"
-                    style="@style/IconTVActions"
-                    android:layout_marginRight="10dp"
-                    android:text="{fa-phone}"/>
 
                 <TextView
-                    android:id="@+id/event_organizer_tel"
+                    android:id="@+id/event_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:maxWidth="400dp"
+                    android:singleLine="false"
+                    style="@style/ContentText"
+                    android:text="12.03.2014"
+                    />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/date_to_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+                <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/date_to_header"
+                    style="@style/SectionHeader"
+                    android:text="@string/event_when"/>
+
+
+                <TextView
+                    android:id="@+id/event_date_to_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:gravity="center_vertical"
-                    android:textSize="18sp"
-                    android:textColor="@color/textColor"
-                    android:text="079 236 39 76"/>
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    style="@style/ContentText"
+                    android:text="12.03.2014"
+                    />
+
+            </RelativeLayout>
+
+            <View style="@style/SettingsLine.margin"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/location_header"
+                    style="@style/SectionHeader"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/event_location"/>
+
+                <TextView
+                    android:id="@+id/event_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:maxWidth="400dp"
+                    android:singleLine="false"
+                    style="@style/ContentText"
+                    android:text="Mehrzweckhalle, 3934 Zeneggen"/>
+
+            </RelativeLayout>
+
+
+            <View style="@style/SettingsLine.margin"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/organizer_header"
+                    android:layout_alignParentLeft="true"
+                    style="@style/SectionHeader"
+                    android:text="@string/event_organized_by"/>
+
+                <TextView
+                    android:id="@+id/event_organizer_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    style="@style/ContentText"
+                    android:text="SSC Zeneggen"/>
+
+
+                <LinearLayout
+                    android:id="@+id/event_organizer_tel_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/event_organizer_name"
+                    style="@style/ContentText"
+                    android:orientation="horizontal">
+
+                    <IconTextView
+                        android:id="@+id/tel_icon"
+                        style="@style/IconTVActions"
+                        android:layout_marginRight="10dp"
+                        android:text="{fa-phone}"/>
+
+                    <TextView
+                        android:id="@+id/event_organizer_tel"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:gravity="center_vertical"
+                        android:textSize="18sp"
+                        android:textColor="@color/textColorBright"
+                        android:text="079 236 39 76"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+
+
 
             <View style="@style/SettingsLine.margin"/>
             <TextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -192,6 +242,7 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:textColor="@color/textColorBright"
                     android:text="{fa-thumbs-up}"/>
 
                 <IconTextView
@@ -201,6 +252,7 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:textColor="@color/textColorBright"
                     android:text="{fa-thumbs-down}"/>
 
 
@@ -217,6 +269,7 @@
                     android:layout_width="0dp"
                     android:textSize="18sp"
                     android:layout_weight="1"
+                    android:textColor="@color/textColorBright"
                     android:layout_gravity="center"
                     android:gravity="center" />
 
@@ -226,6 +279,7 @@
                     android:layout_width="0dp"
                     android:textSize="18sp"
                     android:layout_weight="1"
+                    android:textColor="@color/textColorBright"
                     android:layout_gravity="center"
                     android:gravity="center" />
 

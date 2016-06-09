@@ -3,14 +3,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="6dp"
+    android:layout_marginTop="16dp"
+    android:background="@color/white"
     android:gravity="center_vertical">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        >
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,19 +14,20 @@
 
             <ImageView
                 android:id="@+id/event_image"
-                android:layout_margin="5dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
                 android:src="@drawable/zeneggne_summer"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:layout_margin="5dp">
+                android:layout_margin="10dp">
 
                 <TextView
                     android:id="@+id/event_time_tv"
-                    style="@style/Text.Normal"
+                    style="@style/Text.Normal.Green"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -38,7 +35,7 @@
 
                 <TextView
                     android:id="@+id/event_title_tv"
-                    style="@style/Text.Big"
+                    style="@style/Text.Big.Slim"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -71,9 +68,7 @@
                         android:id="@+id/nbr_person"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/Text"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="24sp"
+                        style="@style/Text.Normal.Green"
                         android:layout_gravity="bottom"
                         android:gravity="bottom"
                         android:text="3"/>
@@ -84,7 +79,7 @@
                         android:id="@+id/person_icon"
                         style="@style/Text"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="26sp"
+                        android:textSize="20sp"
                         android:layout_gravity="bottom"
                         android:gravity="bottom"
                         android:text="{fa-child}"
@@ -98,11 +93,6 @@
 
 
         </LinearLayout>
-
-
-
-
-    </android.support.v7.widget.CardView>
 
 
 

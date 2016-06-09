@@ -31,8 +31,8 @@
   <color name="yellowBrightest">#FFE082</color>
 
   <color name="white">#FFFFFF</color>
-  <color name="textColor">#555555</color>
-  <color name="textColorBright">#888888</color>
-  <color name="greyBright">#AAAAAA</color>
-  <color name="greyBrightest">#DDDDDD</color>
+  <color name="textColor">#5D4037</color>
+  <color name="textColorBright">#795548</color>
+  <color name="brownBright">#BCAAA4</color>
+  <color name="greyBrightest">#EEEEEE</color>
 </resources>

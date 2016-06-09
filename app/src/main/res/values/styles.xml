@@ -53,6 +53,10 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="Text.Normal.Green">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
     <style name="Text.Menu">
     </style>
 
@@ -114,11 +118,11 @@
     </style>
 
     <style name="SectionHeader">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:gravity">bottom|center_horizontal</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
         <item name="android:textSize">16sp</item>
     </style>
 
