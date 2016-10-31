@@ -16,7 +16,7 @@
 
 package ch.ccapps.android.zeneggen.fragment;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -25,7 +25,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,24 +45,53 @@ import ch.ccapps.android.zeneggen.adapter.SectionRecyclerAdapter;
 import ch.ccapps.android.zeneggen.adapter.holder.ViewHolder;
 import ch.ccapps.android.zeneggen.model.Hotel;
 
-public class HotelListFragment extends Fragment implements SectionRecyclerAdapter.ViewHolderCreator, SectionRecyclerAdapter.SectionAdapterClickListener<Hotel> {
+public class TabSectionListFragment<T> extends Fragment implements SectionRecyclerAdapter.ViewHolderCreator, SectionRecyclerAdapter.SectionAdapterClickListener<T> {
     @Nullable
-    private HashMap<String, List<Hotel>> mHotels;
+    private HashMap<String, List<T>> itemMap;
+    private int fragmentListLayoutId;
+    private TabSectionListInterface<T> tabSecInterface;
+
+    private static final String LIST_LAYOUT_KEY = "LIST_LAYOUT_ID";
+
+    public interface CustomSectionListInterface<T>{
+        @NonNull
+        public TabSectionListInterface<T> getTabSectionListInterface();
+    }
 
     @NonNull
-    public static HotelListFragment newInstance(HashMap<String, List<Hotel>> hotels) {
-        HotelListFragment fragment = new HotelListFragment();
+    public static TabSectionListFragment newInstance(HashMap<String, List<Object>> items,
+                                                     int fragmentListLayout) {
+       TabSectionListFragment fragment = new TabSectionListFragment();
         Bundle b = new Bundle();
-        b.putSerializable("hotels", hotels);
+        b.putSerializable("items", items);
+        b.putInt(LIST_LAYOUT_KEY,fragmentListLayout);
         fragment.setArguments(b);
         return fragment;
+    }
+
+
+    @Override
+    public void onAttach(Activity activity){
+        super.onAttach(activity);
+        try{
+            tabSecInterface = ((CustomSectionListInterface<T>)activity).getTabSectionListInterface();
+        } catch (ClassCastException e){
+            throw new ClassCastException(activity.toString()+" You must implement CustomSectionListInterface");
+        }
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        this.tabSecInterface = null;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mHotels = (HashMap<String, List<Hotel>>)getArguments().getSerializable("hotels");
+            itemMap = (HashMap<String, List<T>>)getArguments().getSerializable("items");
+            fragmentListLayoutId = getArguments().getInt(LIST_LAYOUT_KEY);
         }
     }
 
@@ -72,7 +99,7 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView rv = (RecyclerView) inflater.inflate(
-                R.layout.fragment_hotel_list, container, false);
+                fragmentListLayoutId, container, false);
         setupRecyclerView(rv);
 
         return rv;
@@ -81,16 +108,16 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         List<String> sections = new ArrayList<String>();
-        for (String section : mHotels.keySet()){
+        for (String section : itemMap.keySet()){
             if (section.equals("Zeneggen")){
                 sections.add(0,section);
             } else {
                 sections.add(section);
             }
         }
-        SectionRecyclerAdapter<Hotel> hotelRecAdapter = new SectionRecyclerAdapter<>(mHotels,sections,this,this);
+        SectionRecyclerAdapter<T> hotelRecAdapter = new SectionRecyclerAdapter<>(itemMap,sections,this,this);
         recyclerView.setAdapter(hotelRecAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(HotelListFragment.this.getActivity(), null));
+        recyclerView.addItemDecoration(new DividerItemDecoration(TabSectionListFragment.this.getActivity(), null));
 
     }
 
@@ -110,14 +137,16 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     @Override
     public ViewHolder createViewHolderFor(@NonNull ViewGroup parent, int type) {
         if (type == SectionRecyclerAdapter.DATA_TYPE){
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item, parent, false);
+            return tabSecInterface.createViewHolderForData(parent);
+            /*View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item, parent, false);*/
             //view.setBackgroundResource(mBackground);
-            return new HotelRestViewHolder(view);
+            //return new HotelRestViewHolder(view);
         } else if (type == SectionRecyclerAdapter.SECTION_TYPE) {
-            View view = LayoutInflater.from(parent.getContext())
+            return tabSecInterface.createViewHolderForSection(parent);
+            /*View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_section_header_item, parent, false);
-            return new SectionViewHolder(view);
+            return new SectionViewHolder(view);*/
         } else {
             return null;
         }
@@ -130,73 +159,19 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     }
 
     @Override
-    public void onItemInSecRecViewClicked(Hotel dataobject) {
+    public void onItemInSecRecViewClicked(T dataobject) {
+        tabSecInterface.onItemInSecRecViewClicked(dataobject);
+        /*
         Intent intent = new Intent(getActivity(), HotelDetailActivity.class);
         intent.putExtra(HotelDetailActivity.EXTRA_HOTEL, (Parcelable)dataobject);
-        getActivity().startActivity(intent);
+        getActivity().startActivity(intent);*/
     }
 
-    public static class SectionViewHolder extends ViewHolder<String>{
-        TextView mHeader;
 
-        public SectionViewHolder(@NonNull View view) {
-            super(view);
-            mHeader = (TextView)view.findViewById(R.id.header);
-
-        }
-
-        @Override
-        public void bindData(String data) {
-            mHeader.setText(data);
-
-        }
-
-        @Override
-        public void bindClickListener(View.OnClickListener listener) {
-
-        }
+    public interface TabSectionListInterface<R> {
+        public ViewHolder createViewHolderForSection(@NonNull ViewGroup parent);
+        public ViewHolder<R> createViewHolderForData(@NonNull ViewGroup parent);
+        public void onItemInSecRecViewClicked(R dataobject);
     }
 
-    public static class HotelRestViewHolder extends ViewHolder<Hotel> {
-        public Hotel mHotel;
-
-        @NonNull
-        public final View mView;
-        @NonNull
-        public final ImageView mImageView;
-        @NonNull
-        public final TextView mTextView;
-        @NonNull
-        public final TextView mSubText;
-
-        public HotelRestViewHolder(@NonNull View view) {
-            super(view);
-            mView = view;
-            mImageView = (ImageView) view.findViewById(R.id.avatar);
-            mTextView = (TextView) view.findViewById(R.id.hotel_menu_title);
-            mSubText = (TextView) view.findViewById(R.id.hotel_submenu_title);
-        }
-
-        @NonNull
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mTextView.getText();
-        }
-
-        @Override
-        public void bindData(@NonNull Hotel data) {
-            mHotel = data;
-            Glide.with(mImageView.getContext())
-                    .load(data.getDrawableResource())
-                    .fitCenter()
-                    .into(mImageView);
-            mTextView.setText(data.getName());
-            mSubText.setText(mView.getContext().getString(R.string.phone) + " " + mHotel.getPhonenumber());
-        }
-
-        @Override
-        public void bindClickListener(View.OnClickListener listener) {
-            this.mView.setOnClickListener(listener);
-        }
-    }
 }

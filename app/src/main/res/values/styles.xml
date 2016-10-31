@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2015 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +16,7 @@
 
 <resources>
 
-    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo">
-    </style>
+    <style name="Theme.DesignDemo" parent="Base.Theme.DesignDemo"></style>
 
     <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -57,13 +55,13 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-    <style name="Text.Menu">
-    </style>
+    <style name="Text.Menu"></style>
 
     <style name="Text.Menu.Big">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="Text.Menu.Small">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/textColorBright</item>
@@ -143,6 +141,7 @@
         <item name="android:layout_height">1.0dp</item>
         <item name="android:background">@color/greyBrightest</item>
     </style>
+
     <style name="SettingsLine.margin">
         <item name="android:layout_marginBottom">14dp</item>
         <item name="android:layout_marginTop">14dp</item>
@@ -155,6 +154,7 @@
         <item name="android:layout_height">2.0dp</item>
         <item name="android:background">@color/greyBrightest</item>
     </style>
+
     <style name="SettingsLine.Toptransparent">
         <item name="android:layout_height">2.0dp</item>
         <item name="android:background">@drawable/header_line_bg_top</item>
@@ -164,5 +164,9 @@
         <item name="android:layout_height">2.0dp</item>
         <item name="android:background">@drawable/header_line_bg_bottom</item>
     </style>
+
+    <style name="Theme.DesignDemo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DesignDemo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -16,7 +16,6 @@
 
 package ch.ccapps.android.zeneggen.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -25,7 +24,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +32,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,17 +42,19 @@ import ch.ccapps.android.zeneggen.activity.tourismus.HotelDetailActivity;
 import ch.ccapps.android.zeneggen.adapter.DividerItemDecoration;
 import ch.ccapps.android.zeneggen.adapter.SectionRecyclerAdapter;
 import ch.ccapps.android.zeneggen.adapter.holder.ViewHolder;
+import ch.ccapps.android.zeneggen.model.CarShareMobile;
 import ch.ccapps.android.zeneggen.model.Hotel;
 
-public class HotelListFragment extends Fragment implements SectionRecyclerAdapter.ViewHolderCreator, SectionRecyclerAdapter.SectionAdapterClickListener<Hotel> {
+public class CarShareFragment extends Fragment implements SectionRecyclerAdapter.ViewHolderCreator, SectionRecyclerAdapter.SectionAdapterClickListener<CarShareMobile> {
     @Nullable
-    private HashMap<String, List<Hotel>> mHotels;
+    private HashMap<String, List<CarShareMobile>> mCarShares;
+    private final static String serialKey = "carshares";
 
     @NonNull
-    public static HotelListFragment newInstance(HashMap<String, List<Hotel>> hotels) {
-        HotelListFragment fragment = new HotelListFragment();
+    public static CarShareFragment newInstance(HashMap<String, List<CarShareMobile>> carshares) {
+        CarShareFragment fragment = new CarShareFragment();
         Bundle b = new Bundle();
-        b.putSerializable("hotels", hotels);
+        b.putSerializable(serialKey, carshares);
         fragment.setArguments(b);
         return fragment;
     }
@@ -64,7 +63,7 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mHotels = (HashMap<String, List<Hotel>>)getArguments().getSerializable("hotels");
+            mCarShares = (HashMap<String, List<CarShareMobile>>)getArguments().getSerializable(serialKey);
         }
     }
 
@@ -72,7 +71,7 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView rv = (RecyclerView) inflater.inflate(
-                R.layout.fragment_hotel_list, container, false);
+                R.layout.fragment_carshare_list, container, false);
         setupRecyclerView(rv);
 
         return rv;
@@ -81,16 +80,16 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         List<String> sections = new ArrayList<String>();
-        for (String section : mHotels.keySet()){
-            if (section.equals("Zeneggen")){
+        for (String section : mCarShares.keySet()){
+            if (section.equals("Fahrer")){
                 sections.add(0,section);
             } else {
                 sections.add(section);
             }
         }
-        SectionRecyclerAdapter<Hotel> hotelRecAdapter = new SectionRecyclerAdapter<>(mHotels,sections,this,this);
-        recyclerView.setAdapter(hotelRecAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(HotelListFragment.this.getActivity(), null));
+        SectionRecyclerAdapter<CarShareMobile> carShareAdapter = new SectionRecyclerAdapter<>(mCarShares,sections,this,this);
+        recyclerView.setAdapter(carShareAdapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(CarShareFragment.this.getActivity(), null));
 
     }
 
@@ -111,9 +110,9 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     public ViewHolder createViewHolderFor(@NonNull ViewGroup parent, int type) {
         if (type == SectionRecyclerAdapter.DATA_TYPE){
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item, parent, false);
+                    .inflate(R.layout.list_carshare_item, parent, false);
             //view.setBackgroundResource(mBackground);
-            return new HotelRestViewHolder(view);
+            return new CarShareViewHolder(view);
         } else if (type == SectionRecyclerAdapter.SECTION_TYPE) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_section_header_item, parent, false);
@@ -130,7 +129,7 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
     }
 
     @Override
-    public void onItemInSecRecViewClicked(Hotel dataobject) {
+    public void onItemInSecRecViewClicked(CarShareMobile dataobject) {
         Intent intent = new Intent(getActivity(), HotelDetailActivity.class);
         intent.putExtra(HotelDetailActivity.EXTRA_HOTEL, (Parcelable)dataobject);
         getActivity().startActivity(intent);
@@ -157,8 +156,8 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
         }
     }
 
-    public static class HotelRestViewHolder extends ViewHolder<Hotel> {
-        public Hotel mHotel;
+    public static class CarShareViewHolder extends ViewHolder<CarShareMobile> {
+        public CarShareMobile mCarShare;
 
         @NonNull
         public final View mView;
@@ -169,7 +168,7 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
         @NonNull
         public final TextView mSubText;
 
-        public HotelRestViewHolder(@NonNull View view) {
+        public CarShareViewHolder(@NonNull View view) {
             super(view);
             mView = view;
             mImageView = (ImageView) view.findViewById(R.id.avatar);
@@ -184,14 +183,15 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
         }
 
         @Override
-        public void bindData(@NonNull Hotel data) {
-            mHotel = data;
-            Glide.with(mImageView.getContext())
+        public void bindData(@NonNull CarShareMobile data) {
+            mCarShare = data;
+            //TODO
+           /* Glide.with(mImageView.getContext())
                     .load(data.getDrawableResource())
                     .fitCenter()
                     .into(mImageView);
             mTextView.setText(data.getName());
-            mSubText.setText(mView.getContext().getString(R.string.phone) + " " + mHotel.getPhonenumber());
+            mSubText.setText(mView.getContext().getString(R.string.phone) + " " + mHotel.getPhonenumber());*/
         }
 
         @Override

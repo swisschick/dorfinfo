@@ -18,6 +18,7 @@ import ch.ccapps.android.zeneggen.activity.ActionBarActivity;
 import ch.ccapps.android.zeneggen.adapter.DividerItemDecoration;
 import ch.ccapps.android.zeneggen.adapter.EventParticipantAdapter;
 import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.model.Participant;
 import ch.ccapps.android.zeneggen.model.User;
 
 public class EventActivity extends ActionBarActivity {
@@ -81,16 +82,16 @@ public class EventActivity extends ActionBarActivity {
             //ict_not_sure.setBackgroundResource(R.drawable.red_button_active);
 
             String participants = "";
-            for(User us :myEvent.getParticipants()){
-                participants += us.getNickName()+"\n";
+            for(Participant us :myEvent.getParticipants()){
+                participants += us.getProfileName()+"\n";
             }
             participants+="Unbekannt: "+myEvent.getAnonymParticipants();
 
             participsTV.setText(participants);
 
             String nonparticipants = "";
-            for(User us :myEvent.getNonParticipants()){
-                nonparticipants += us.getNickName()+"\n";
+            for(Participant us :myEvent.getNonParticipants()){
+                nonparticipants += us.getProfileName()+"\n";
             }
             nonparticipants+="Unbekannt: "+myEvent.getAnonymNonParticipants();
             nonParticipsTV.setText(nonparticipants);

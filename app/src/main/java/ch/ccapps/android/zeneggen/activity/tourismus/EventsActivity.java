@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import ch.ccapps.android.zeneggen.R;
@@ -18,8 +19,10 @@ import ch.ccapps.android.zeneggen.adapter.EventAdapter;
 import ch.ccapps.android.zeneggen.adapter.SectionRecyclerAdapter;
 import ch.ccapps.android.zeneggen.model.Event;
 import ch.ccapps.android.zeneggen.model.Hotel;
+import ch.ccapps.android.zeneggen.task.HttpGetTask;
+import ch.ccapps.android.zeneggen.util.Config;
 
-public class EventsActivity extends ActionBarActivity {
+public class EventsActivity extends ActionBarActivity implements HttpGetTask.HttpGetCallback<List<Event>> {
 
     private RecyclerView eventsRV;
     private List<Event> eventsList;
@@ -30,6 +33,10 @@ public class EventsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setActionBarContentView(R.layout.activity_events);
         setTitle(R.string.menu_events);
+        HashMap<String, String> params = new HashMap<>();
+        HttpGetTask<List<Event>> httpTask =
+                new HttpGetTask<List<Event>>(this, Config.IF_FUTURE_EVENTS,params);
+        httpTask.execute();
 
         eventsRV = (RecyclerView) findViewById(R.id.recyclerview_events);
 
@@ -45,4 +52,13 @@ public class EventsActivity extends ActionBarActivity {
         //recyclerView.addItemDecoration(new DividerItemDecoration(this, null));
     }
 
+    @Override
+    public void onReceivedResult(List<Event> result) {
+
+    }
+
+    @Override
+    public void onReceivedError(String errorCode, String errorMessage, String errorTitle) {
+
+    }
 }

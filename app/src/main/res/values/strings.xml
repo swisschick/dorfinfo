@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2015 The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -48,6 +47,7 @@
     <string name="title_activity_action_bar">ActionBarActivity</string>
     <string name="title_activity_action_tab_bar">ActionTabBarActivity</string>
     <string name="title_activity_hotel_restaurant">Hotels &amp; Restaurants</string>
+    <string name="title_car_share">Mitfahren</string>
 
   <!-- Hotel Restaurants -->
   <string name="phone">Tel:</string>
@@ -73,5 +73,11 @@
   <string name="event_no">Nein</string>
   <string name="event_yes">Ja</string>
   <string name="event_nbr_participants">%s Teilnehmer</string>
+
+  <!-- Register -->
+  <string name="register_register">Registrieren</string>
+  <string name="register_email">Email</string>
+  <string name="register_profilename">Profil Name</string>
+    <string name="title_activity_car_share">Car Sharing</string>
 
 </resources>

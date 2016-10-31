@@ -1,5 +1,7 @@
 package ch.ccapps.android.zeneggen.util;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,12 +17,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ch.glue.fagime.Config;
 
 
 /**
- * Created by pauli on 25.07.14.
+ * Created by celine on 09.06.2016
  */
+
 public final class HttpHelper {
 
     public static final String CONNECTION_FAIL = "NO_CONNECTION";
@@ -50,7 +52,7 @@ public final class HttpHelper {
             throw new IllegalArgumentException("invalid url: " + endpoint);
         }
 
-        ch.glue.fagime.util.Logger.i(TAG, "Posting body: '" + body + "' to " + url);
+        //ch.glue.fagime.util.Logger.i(TAG, "Posting body: '" + body + "' to " + url);
 
 
         byte[] bytes = body.getBytes();
@@ -72,7 +74,7 @@ public final class HttpHelper {
 
             // handle the response
             int status = conn.getResponseCode();
-            ch.glue.fagime.util.Logger.i(TAG, "PostStatus: " + status + "/" + conn.getResponseMessage());
+            //Logger.i(TAG, "PostStatus: " + status + "/" + conn.getResponseMessage());
 
 
             if (status != 200) {
@@ -84,6 +86,7 @@ public final class HttpHelper {
     }
 
     public String doGet(Map<String, String> paramMap) {
+        Log.i(TAG,"Making GET request to:"+endpoint);
         Map<String, List<String>> paramMapList = new HashMap<String, List<String>>();
         if (paramMap != null) {
             for (String key : paramMap.keySet()) {
@@ -114,7 +117,7 @@ public final class HttpHelper {
     public String doGetMap(Map<String, List<String>> paramMap, boolean checkConnection) {
         try {
             String url = buildUrl(endpoint, paramMap);
-            ch.glue.fagime.util.Logger.i(TAG, "doGet: " + url);
+            //ch.glue.fagime.util.Logger.i(TAG, "doGet: " + url);
 
             URL src = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) src.openConnection();
@@ -130,12 +133,13 @@ public final class HttpHelper {
                 result.append(buffer, 0, len);
             }
             reader.close();
-            ch.glue.fagime.util.Logger.i(TAG, "result: " + result.toString());
-
+            //ch.glue.fagime.util.Logger.i(TAG, "result: " + result.toString());
+            Log.i(TAG,"GET Response:"+result.toString());
             return result.toString();
 
         } catch (IOException e) {
-            ch.glue.fagime.util.Logger.e(TAG, "HttpHelper.doGet failed: " + e.getMessage());
+            Log.e(TAG,"IO Exception",e);
+            //ch.glue.fagime.util.Logger.e(TAG, "HttpHelper.doGet failed: " + e.getMessage());
 
         }
         if (checkConnection) {
@@ -155,7 +159,7 @@ public final class HttpHelper {
             urlBuilder.append("?");
         }
         urlBuilder.append("app=");
-        urlBuilder.append(URLEncoder.encode(Config.APP_PARAM, "UTF-8"));
+        //urlBuilder.append(URLEncoder.encode(Config.APP_PARAM, "UTF-8"));
 
         /*urlBuilder.append("deviceType=");
         urlBuilder.append(URLEncoder.encode(Device.Model(), "UTF-8"));
@@ -179,7 +183,7 @@ public final class HttpHelper {
                     urlBuilder.append("=");
                     urlBuilder.append(URLEncoder.encode(value, "UTF-8"));
                 } else {
-                    ch.glue.fagime.util.Logger.w(TAG, "Value for Key=" + key + " is null");
+                    //ch.glue.fagime.util.Logger.w(TAG, "Value for Key=" + key + " is null");
                 }
             }
 
@@ -192,11 +196,11 @@ public final class HttpHelper {
         try {
             url = new URL(endpoint);
         } catch (MalformedURLException e) {
-            ch.glue.fagime.util.Logger.e(TAG, "Malformed URL'");
+            //ch.glue.fagime.util.Logger.e(TAG, "Malformed URL'");
             throw new IllegalArgumentException("invalid url: " + endpoint);
         }
 
-        ch.glue.fagime.util.Logger.i(TAG, "Posting body: '" + json + "' to " + url);
+        //ch.glue.fagime.util.Logger.i(TAG, "Posting body: '" + json + "' to " + url);
 
 
         byte[] bytes = json.getBytes();
@@ -218,7 +222,7 @@ public final class HttpHelper {
 
             // handle the response
             int status = conn.getResponseCode();
-            ch.glue.fagime.util.Logger.i(TAG, "PostStatus: " + status + "/" + conn.getResponseMessage());
+            //ch.glue.fagime.util.Logger.i(TAG, "PostStatus: " + status + "/" + conn.getResponseMessage());
 
 
             if (status != 200) {
