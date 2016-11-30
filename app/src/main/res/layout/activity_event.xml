@@ -107,7 +107,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:maxWidth="400dp"
-                    android:singleLine="false"
                     style="@style/ContentText"
                     android:text="12.03.2014"
                     />

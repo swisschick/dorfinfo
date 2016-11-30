@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/greyBrightest"
-    tools:context="ch.ccapps.android.zeneggen.activity.RegisterActivity">
+    tools:context="ch.ccapps.android.zeneggen.activity.User.RegisterActivity">
 
     <EditText
         android:id="@+id/profile_name"
@@ -29,6 +29,8 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="onRegister"
         android:background="@drawable/zeneggen_button"
         android:text="@string/register_register"/>
 

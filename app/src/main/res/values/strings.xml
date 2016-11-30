@@ -48,6 +48,8 @@
     <string name="title_activity_action_tab_bar">ActionTabBarActivity</string>
     <string name="title_activity_hotel_restaurant">Hotels &amp; Restaurants</string>
     <string name="title_car_share">Mitfahren</string>
+    <string name="title_register">Registrieren</string>
+    <string name="title_profile">Profil</string>
 
   <!-- Hotel Restaurants -->
   <string name="phone">Tel:</string>
@@ -58,6 +60,10 @@
     <string name="title_activity_view_point">Sehenswürdigkeiten</string>
     <string name="title_activity_numbers">Zahlen</string>
     <string name="title_activity_event">EventActivity</string>
+
+  <!-- CarShare -->
+  <string name="carshare_my_trips">Meine Fahrten</string>
+  <string name="carshare_other_trips">Andere Fahrten</string>
 
   <!-- Events -->
   <string name="event_i_participate">Ich nehme teil!</string>
@@ -79,5 +85,13 @@
   <string name="register_email">Email</string>
   <string name="register_profilename">Profil Name</string>
     <string name="title_activity_car_share">Car Sharing</string>
+
+
+  <!-- Profile -->
+  <string name="profile_email">Email</string>
+  <string name="profile_profilename">Profil Name</string>
+  <string name="profile_firstname">Vorname</string>
+  <string name="profile_lastname">Nachname</string>
+  <string name="profile_phonenbr">Telefon Nummer</string>
 
 </resources>

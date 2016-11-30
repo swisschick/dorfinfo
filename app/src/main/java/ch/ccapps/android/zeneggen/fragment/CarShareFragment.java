@@ -191,7 +191,7 @@ public class CarShareFragment extends Fragment implements SectionRecyclerAdapter
                     .fitCenter()
                     .into(mImageView);
             mTextView.setText(data.getName());
-            mSubText.setText(mView.getContext().getString(R.string.phone) + " " + mHotel.getPhonenumber());*/
+            mSubText.setText(mView.getContext().getString(R.string.phone) + " " + mCarShare.getPhonenumber());*/
         }
 
         @Override

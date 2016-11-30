@@ -5,7 +5,7 @@ import ch.ccapps.android.zeneggen.BuildConfig;
 public class Config {
 
 
-    public static final String IF_BASE = "http://192.168.1.111:9000";
+    public static final String IF_BASE = "http://192.168.43.98:9000";
 
     /**
      * Events
@@ -21,6 +21,7 @@ public class Config {
      * Hotels
      */
     public static final String IF_HOTELS = BuildConfig.IFBASE_STRING + "/mobile/listHotels";
+    public static final String IF_HOTELS_IMAGES = BuildConfig.IFBASE_STRING + "/webapp/hotels/image/";
 
     /**
      * Event participation

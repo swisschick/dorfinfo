@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.ccapps.android.zeneggen.activity.User.ProfileActivity"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="14dp"
+        android:orientation="vertical">
+
+        <View style="@style/SettingsLine.margin"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/profile_name_descr"
+                style="@style/SectionHeader"
+                android:layout_alignParentLeft="true"
+                android:text="@string/profile_profilename"/>
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:maxWidth="400dp"
+                style="@style/ContentText"
+                android:text=""/>
+
+        </RelativeLayout>
+        <View style="@style/SettingsLine.margin"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/email_descr"
+                style="@style/SectionHeader"
+                android:layout_alignParentLeft="true"
+                android:text="@string/profile_email"/>
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:maxWidth="400dp"
+                style="@style/ContentText"
+                android:text=""/>
+
+        </RelativeLayout>
+        <View style="@style/SettingsLine.margin"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/firstname_descr"
+                style="@style/SectionHeader"
+                android:layout_alignParentLeft="true"
+                android:text="@string/profile_firstname"/>
+
+            <TextView
+                android:id="@+id/firstname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:maxWidth="400dp"
+                style="@style/ContentText"
+                android:text=""/>
+
+        </RelativeLayout>
+        <View style="@style/SettingsLine.margin"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/lastname_descr"
+                style="@style/SectionHeader"
+                android:layout_alignParentLeft="true"
+                android:text="@string/profile_lastname"/>
+
+            <TextView
+                android:id="@+id/lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:maxWidth="400dp"
+                style="@style/ContentText"
+                android:text=""/>
+
+        </RelativeLayout>
+
+        <View style="@style/SettingsLine.margin"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/phone_number_descr"
+                style="@style/SectionHeader"
+                android:layout_alignParentLeft="true"
+                android:text="@string/profile_phonenbr"/>
+
+            <TextView
+                android:id="@+id/phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:maxWidth="400dp"
+                style="@style/ContentText"
+                android:text=""/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

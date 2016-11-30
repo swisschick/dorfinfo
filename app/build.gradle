@@ -26,12 +26,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField "boolean", "LOGGING", "true"
-            buildConfigField "String", "IFBASE_STRING", "\"http://192.168.1.111:9000\""
+            buildConfigField "String", "IFBASE_STRING", "\"http://192.168.1.113:9000\""
         }
         debug{
             minifyEnabled false
             buildConfigField "boolean", "LOGGING", "true"
-            buildConfigField "String", "IFBASE_STRING", "\"http://192.168.1.111:9000\""
+            buildConfigField "String", "IFBASE_STRING", "\"http://192.168.1.113:9000\""
         }
     }
 }
@@ -80,4 +80,5 @@ dependencies {
     compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.0'
     compile 'com.android.support:support-annotations:22.1.0'
     compile 'com.intellij:annotations:12.0'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 }

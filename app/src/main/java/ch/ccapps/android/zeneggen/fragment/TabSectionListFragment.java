@@ -25,6 +25,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,9 +50,11 @@ public class TabSectionListFragment<T> extends Fragment implements SectionRecycl
     @Nullable
     private HashMap<String, List<T>> itemMap;
     private int fragmentListLayoutId;
+    private String hotelType;
     private TabSectionListInterface<T> tabSecInterface;
 
     private static final String LIST_LAYOUT_KEY = "LIST_LAYOUT_ID";
+    private static final String HOTEL_TYPE_KEY = "HOTEL_TYPE";
 
     public interface CustomSectionListInterface<T>{
         @NonNull
@@ -59,11 +62,11 @@ public class TabSectionListFragment<T> extends Fragment implements SectionRecycl
     }
 
     @NonNull
-    public static TabSectionListFragment newInstance(HashMap<String, List<Object>> items,
+    public static TabSectionListFragment newInstance(String hotelType,
                                                      int fragmentListLayout) {
        TabSectionListFragment fragment = new TabSectionListFragment();
         Bundle b = new Bundle();
-        b.putSerializable("items", items);
+        b.putString(HOTEL_TYPE_KEY,hotelType);
         b.putInt(LIST_LAYOUT_KEY,fragmentListLayout);
         fragment.setArguments(b);
         return fragment;
@@ -73,8 +76,11 @@ public class TabSectionListFragment<T> extends Fragment implements SectionRecycl
     @Override
     public void onAttach(Activity activity){
         super.onAttach(activity);
+        Log.i("TabSectionListFragment","- OnAttach -");
         try{
             tabSecInterface = ((CustomSectionListInterface<T>)activity).getTabSectionListInterface();
+
+            Log.i("TabSectionListFragment"," item Map is:"+itemMap);
         } catch (ClassCastException e){
             throw new ClassCastException(activity.toString()+" You must implement CustomSectionListInterface");
         }
@@ -89,9 +95,11 @@ public class TabSectionListFragment<T> extends Fragment implements SectionRecycl
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        Log.i("TabSectionListFragment","- OnCreate -");
         if (getArguments() != null) {
-            itemMap = (HashMap<String, List<T>>)getArguments().getSerializable("items");
+            this.hotelType =  getArguments().getString(HOTEL_TYPE_KEY);
             fragmentListLayoutId = getArguments().getInt(LIST_LAYOUT_KEY);
+            itemMap = tabSecInterface.fillWithItemMap(hotelType);
         }
     }
 
@@ -100,6 +108,7 @@ public class TabSectionListFragment<T> extends Fragment implements SectionRecycl
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         RecyclerView rv = (RecyclerView) inflater.inflate(
                 fragmentListLayoutId, container, false);
+        Log.i("TabSectionListFragment","- OnCreateView -");
         setupRecyclerView(rv);
 
         return rv;
@@ -109,7 +118,7 @@ public class TabSectionListFragment<T> extends Fragment implements SectionRecycl
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         List<String> sections = new ArrayList<String>();
         for (String section : itemMap.keySet()){
-            if (section.equals("Zeneggen")){
+            if (section != null && section.equals("Zeneggen")){
                 sections.add(0,section);
             } else {
                 sections.add(section);
@@ -172,6 +181,7 @@ public class TabSectionListFragment<T> extends Fragment implements SectionRecycl
         public ViewHolder createViewHolderForSection(@NonNull ViewGroup parent);
         public ViewHolder<R> createViewHolderForData(@NonNull ViewGroup parent);
         public void onItemInSecRecViewClicked(R dataobject);
+        public HashMap<String, List<R>> fillWithItemMap(String hoteltype);
     }
 
 }

@@ -116,4 +116,10 @@ public class CarShareMobile {
     public void setParticipants(List<AppUserMobile> participants) {
         this.participants = participants;
     }
+
+    public static List<CarShareMobile> defaultCarShares(){
+        List<CarShareMobile> carShares = new ArrayList<>();
+
+        return carShares;
+    }
 }

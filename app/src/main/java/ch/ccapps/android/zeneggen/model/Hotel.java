@@ -15,6 +15,7 @@ import ch.ccapps.android.zeneggen.R;
  * Created by celineheldner on 30.07.15.
  */
 public class Hotel implements Parcelable, Serializable{
+    private int id;
     private String name;
     private int drawableResource;
     private String description;
@@ -24,6 +25,7 @@ public class Hotel implements Parcelable, Serializable{
     private String link;
     private String email;
     private String plz;
+    private String imageName;
     private List<String> type = new ArrayList<>();
 
     public Hotel(){}
@@ -167,12 +169,28 @@ public class Hotel implements Parcelable, Serializable{
         this.email = email;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getPlz() {
         return plz;
     }
 
     public void setPlz(String plz) {
         this.plz = plz;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     @Override
@@ -193,6 +211,7 @@ public class Hotel implements Parcelable, Serializable{
     };
 
     private Hotel(@NonNull Parcel in) {
+        setId(in.readInt());
         setName(in.readString());
         setDrawableResource(in.readInt());
         setDescription(in.readString());
@@ -203,10 +222,12 @@ public class Hotel implements Parcelable, Serializable{
         setAddress(in.readString());
         setEmail(in.readString());
         setLink(in.readString());
+        setImageName(in.readString());
     }
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeInt(this.id);
         dest.writeString(this.name);
         dest.writeInt(this.getDrawableResource());
         dest.writeString(this.description);
@@ -217,5 +238,6 @@ public class Hotel implements Parcelable, Serializable{
         dest.writeString(this.address);
         dest.writeString(this.email);
         dest.writeString(this.link);
+        dest.writeString(this.imageName);
     }
 }

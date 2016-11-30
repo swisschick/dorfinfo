@@ -83,7 +83,7 @@ public class HotelDetailActivity extends AppCompatActivity {
 
 
         String contactString = "";
-        //contactString += getString(R.string.phone)+" "+mHotel.getPhonenumber();
+        //contactString += getString(R.string.phone)+" "+mCarShare.getPhonenumber();
         if(mHotel.getAddress() != null){
             contactString += mHotel.getAddress();
         }
