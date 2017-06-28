@@ -5,8 +5,6 @@ import ch.ccapps.android.zeneggen.BuildConfig;
 public class Config {
 
 
-    public static final String IF_BASE = "http://192.168.1.111:9000";
-
     /**
      * Events
      */
@@ -15,19 +13,22 @@ public class Config {
     /**
      * Profile
      */
-    public static final String IF_REGISTER = BuildConfig.IFBASE_STRING + "/mobile/appuser/register";
+    public static final String IF_REGISTER_WITH_PIC = "/mobile/appuser/registerWithPic";
+    public static final String IF_REGISTER = "/mobile/appuser/register";
 
     /**
      * Hotels
      */
     public static final String IF_HOTELS = BuildConfig.IFBASE_STRING + "/mobile/listHotels";
+    public static final String IF_HOTELS_IMAGES = BuildConfig.IFBASE_STRING + "/webapp/hotels/image/";
 
     /**
      * Event participation
      */
-    public static final String IF_PARTICIPATE_EVENT = BuildConfig.IFBASE_STRING + "/mobile/appuser/participateEvent";
-    public static final String IF_NOT_PARTICIPATE_EVENT = BuildConfig.IFBASE_STRING + "/mobile/appuser/notParticipateEvent";
+    public static final String IF_PARTICIPATE_EVENT = BuildConfig.IFBASE_STRING + "/mobile/event/{eventid}/participate";
+    public static final String IF_NOT_PARTICIPATE_EVENT = BuildConfig.IFBASE_STRING + "/mobile/event/{eventid}/notParticipate";
     public static final String IF_RESET_PARTICIPATE_EVENT = BuildConfig.IFBASE_STRING + "/mobile/appuser/resetEventParticip";
+    public static final String IF_EVENTS_IMAGES = BuildConfig.IFBASE_STRING + "/webapp/events/image/";
 
     /**
      * Car Sharing Mobile

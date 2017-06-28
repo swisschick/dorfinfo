@@ -17,6 +17,7 @@
     package="ch.ccapps.android.zeneggen">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -67,6 +68,9 @@
             android:name=".activity.tourismus.EventsActivity"
             android:label="@string/title_activity_events" />
         <activity
+            android:name=".activity.tourismus.Events2Activity"
+            android:label="@string/title_activity_events" />
+        <activity
             android:name=".activity.tourismus.ActivitiesActivity"
             android:label="@string/title_activity_activities" />
         <activity
@@ -78,10 +82,22 @@
         <activity
             android:name=".activity.tourismus.EventActivity"
             android:label="@string/title_activity_event" />
-        <activity android:name=".activity.RegisterActivity" />
         <activity
-            android:name=".activity.gemeinde.CarShareActivity"
-            android:label="@string/title_activity_car_share"
+            android:name=".activity.tourismus.EventDetailActivity"
+            android:parentActivityName=".activity.tourismus.EventActivity"
+            android:label="@string/title_activity_event_detail" />
+        <activity android:name=".activity.User.RegisterActivity" />
+        <activity android:name=".activity.carshare.CreateCarShareActivity" />
+        <activity android:name=".activity.User.EditProfileActivity" />
+        <activity android:name=".activity.User.ProfileActivity" />
+        <activity android:name=".activity.User.EditProfilePicActivity" />
+        <activity
+            android:name=".activity.news.NewsListActivity"
+            android:label="@string/title_activity_news_list"
+            android:theme="@style/Theme.DesignDemo" />
+        <activity
+            android:name=".activity.news.NewsActivity"
+            android:label="@string/title_activity_news"
             android:theme="@style/Theme.DesignDemo"></activity>
     </application>
 

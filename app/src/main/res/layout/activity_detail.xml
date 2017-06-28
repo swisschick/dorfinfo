@@ -89,7 +89,7 @@
                         android:text="Kontakt"
                         android:textAppearance="@style/Text.Big" />
                     <TextView
-                        android:id="@+id/hotel_contact_descr"
+                        android:id="@+id/event_organisor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
@@ -175,7 +175,7 @@
                         android:textAppearance="@style/Text.Big" />
 
                     <TextView
-                        android:id="@+id/hotel_description_tv"
+                        android:id="@+id/event_description_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Text.Normal"

@@ -3,6 +3,7 @@ package ch.ccapps.android.zeneggen.activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -22,9 +23,12 @@ import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 
 import ch.ccapps.android.zeneggen.R;
+import ch.ccapps.android.zeneggen.activity.User.EditProfileActivity;
+import ch.ccapps.android.zeneggen.activity.User.ProfileActivity;
 import ch.ccapps.android.zeneggen.activity.tourismus.TourismumsMain;
 import ch.ccapps.android.zeneggen.adapter.DividerItemDecoration;
 import ch.ccapps.android.zeneggen.adapter.MenuAdapter;
+import ch.ccapps.android.zeneggen.cache.UserLocalStore;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -47,6 +51,8 @@ public class HomeActivity extends AppCompatActivity {
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(getString(R.string.app_name));
 
+        FloatingActionButton fab = (FloatingActionButton)findViewById(R.id.floating_action_button);
+        fab.setImageDrawable(new IconDrawable(this, Iconify.IconValue.fa_user).colorRes(R.color.white));
         sideMenuRV = (RecyclerView)findViewById(R.id.side_menu);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         setupRecyclerView(sideMenuRV);
@@ -121,6 +127,12 @@ public class HomeActivity extends AppCompatActivity {
     public void onTourismus(@NonNull View v){
         Intent intent = new Intent(v.getContext(), TourismumsMain.class);
         intent.putExtra(TourismumsMain.MENU_TYPE,"tourismus");
+        startActivity(intent);
+    }
+
+    public void onProfile(@NonNull View v){
+
+        Intent intent = new Intent(v.getContext(), ProfileActivity.class);
         startActivity(intent);
     }
 }

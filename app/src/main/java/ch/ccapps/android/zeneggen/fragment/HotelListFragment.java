@@ -18,6 +18,7 @@ package ch.ccapps.android.zeneggen.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -33,6 +34,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -46,6 +50,8 @@ import ch.ccapps.android.zeneggen.adapter.DividerItemDecoration;
 import ch.ccapps.android.zeneggen.adapter.SectionRecyclerAdapter;
 import ch.ccapps.android.zeneggen.adapter.holder.ViewHolder;
 import ch.ccapps.android.zeneggen.model.Hotel;
+import ch.ccapps.android.zeneggen.util.Config;
+import ch.ccapps.android.zeneggen.util.ImageCache;
 
 public class HotelListFragment extends Fragment implements SectionRecyclerAdapter.ViewHolderCreator, SectionRecyclerAdapter.SectionAdapterClickListener<Hotel> {
     @Nullable
@@ -187,7 +193,7 @@ public class HotelListFragment extends Fragment implements SectionRecyclerAdapte
         public void bindData(@NonNull Hotel data) {
             mHotel = data;
             Glide.with(mImageView.getContext())
-                    .load(data.getDrawableResource())
+                    .load(Config.IF_HOTELS_IMAGES + mHotel.getImageName())
                     .fitCenter()
                     .into(mImageView);
             mTextView.setText(data.getName());

@@ -42,6 +42,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Text.Big.Profile">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_centerHorizontal">true</item>
+
+    </style>
+
     <style name="Text.Big.Slim">
         <item name="android:textStyle">normal</item>
     </style>

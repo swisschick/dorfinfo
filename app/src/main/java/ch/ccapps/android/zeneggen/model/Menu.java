@@ -11,6 +11,7 @@ import ch.ccapps.android.zeneggen.MainActivity;
 import ch.ccapps.android.zeneggen.R;
 import ch.ccapps.android.zeneggen.activity.tourismus.ActivitiesActivity;
 import ch.ccapps.android.zeneggen.activity.tourismus.DriveToActivity;
+import ch.ccapps.android.zeneggen.activity.tourismus.Events2Activity;
 import ch.ccapps.android.zeneggen.activity.tourismus.EventsActivity;
 import ch.ccapps.android.zeneggen.activity.tourismus.HotelRestaurantActivity;
 import ch.ccapps.android.zeneggen.activity.tourismus.ViewPointActivity;
@@ -84,7 +85,7 @@ public class Menu {
         List<Menu> menuItems = new ArrayList<Menu>();
         Menu m1 = new Menu("Anfahrt", "{fa-road}", new Intent(context, DriveToActivity.class),isSubmenu);
         menuItems.add(m1);
-        Menu m2 = new Menu("Events", "{fa-calendar}", new Intent(context, EventsActivity.class),isSubmenu);
+        Menu m2 = new Menu("Events", "{fa-calendar}", new Intent(context, Events2Activity.class),isSubmenu);
         menuItems.add(m2);
         Menu m3 = new Menu("Hotel & Restaurant", "{fa-bed}", new Intent(context, HotelRestaurantActivity.class),isSubmenu);
         menuItems.add(m3);

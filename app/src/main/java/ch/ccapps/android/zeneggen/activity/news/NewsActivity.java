@@ -1,26 +1,30 @@
-package ch.ccapps.android.zeneggen.activity.gemeinde;
+package ch.ccapps.android.zeneggen.activity.news;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 
-import ch.ccapps.android.zeneggen.R;
-import ch.ccapps.android.zeneggen.activity.ActionTabBarActivity;
-import ch.ccapps.android.zeneggen.fragment.HotelListFragment;
-import ch.ccapps.android.zeneggen.util.HotelLocalStore;
+import com.joanzapata.android.iconify.IconDrawable;
+import com.joanzapata.android.iconify.Iconify;
 
-public class CarShareActivity extends ActionTabBarActivity {
+import ch.ccapps.android.zeneggen.R;
+
+public class NewsActivity extends AppCompatActivity {
+
+    private static final String TAG = NewsActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle(R.string.title_car_share);
+        setContentView(R.layout.activity_news);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageDrawable(new IconDrawable(this, Iconify.IconValue.fa_plus).colorRes(R.color.white));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -28,17 +32,6 @@ public class CarShareActivity extends ActionTabBarActivity {
                         .setAction("Action", null).show();
             }
         });
-    }
-
-    @Override
-    protected void setupViewPager() {
-        adapter.removeAllFragments();
-        /*sectionedHotels =  HotelLocalStore.retrieveHotels(this);
-        Log.d(TAG,"sec hotles"+sectionedHotels);
-        for (String hoteltype : sectionedHotels.keySet()){
-            adapter.addFragment(HotelListFragment.newInstance(sectionedHotels.get(hoteltype)), hoteltype);
-        }*/
-
     }
 
 }

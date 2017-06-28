@@ -1,4 +1,4 @@
-package ch.ccapps.android.zeneggen.util;
+package ch.ccapps.android.zeneggen.util.http;
 
 import android.util.Log;
 
@@ -83,6 +83,10 @@ public final class HttpHelper {
         } finally {
             if (conn != null) conn.disconnect();
         }
+    }
+
+    public void doPost(HashMap<String,String> params, String filePath){
+        ;
     }
 
     public String doGet(Map<String, String> paramMap) {

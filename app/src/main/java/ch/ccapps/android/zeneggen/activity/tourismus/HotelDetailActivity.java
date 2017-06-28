@@ -32,9 +32,9 @@ import com.bumptech.glide.Glide;
 import com.joanzapata.android.iconify.IconDrawable;
 import com.joanzapata.android.iconify.Iconify;
 
-import ch.ccapps.android.zeneggen.Cheeses;
 import ch.ccapps.android.zeneggen.R;
 import ch.ccapps.android.zeneggen.model.Hotel;
+import ch.ccapps.android.zeneggen.util.Config;
 
 public class HotelDetailActivity extends AppCompatActivity {
 
@@ -65,8 +65,8 @@ public class HotelDetailActivity extends AppCompatActivity {
         FloatingActionButton fab  = (FloatingActionButton)findViewById(R.id.floating_send_email);
         fab.setImageDrawable(new IconDrawable(this, Iconify.IconValue.fa_send).colorRes(R.color.white).sizeDp(40));
 
-        contactTV = (TextView) findViewById(R.id.hotel_contact_descr);
-        descrTV = (TextView) findViewById(R.id.hotel_description_tv);
+        contactTV = (TextView) findViewById(R.id.event_organisor);
+        descrTV = (TextView) findViewById(R.id.event_description_tv);
         telTV = (TextView) findViewById(R.id.tel);
         linkTV = (TextView) findViewById(R.id.link);
         if (mHotel.getPhonenumber() != null){
@@ -83,7 +83,7 @@ public class HotelDetailActivity extends AppCompatActivity {
 
 
         String contactString = "";
-        //contactString += getString(R.string.phone)+" "+mHotel.getPhonenumber();
+        //contactString += getString(R.string.phone)+" "+mCarShare.getPhonenumber();
         if(mHotel.getAddress() != null){
             contactString += mHotel.getAddress();
         }
@@ -98,7 +98,7 @@ public class HotelDetailActivity extends AppCompatActivity {
 
     private void loadBackdrop() {
         final ImageView imageView = (ImageView) findViewById(R.id.backdrop);
-        Glide.with(this).load(mHotel.getDrawableResource()).centerCrop().into(imageView);
+        Glide.with(this).load(Config.IF_HOTELS_IMAGES + mHotel.getImageName()).centerCrop().into(imageView);
     }
 
     @Override

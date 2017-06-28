@@ -1,5 +1,7 @@
 package ch.ccapps.android.zeneggen.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -226,4 +228,5 @@ public class Event implements Serializable{
         events.add(new Event(4L,"Bistro","Cocktailparty", "", new Date(),1));
         return events;
     }
+
 }

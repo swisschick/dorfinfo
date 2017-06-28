@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import ch.ccapps.android.zeneggen.model.MobileResponse;
 import ch.ccapps.android.zeneggen.util.Config;
-import ch.ccapps.android.zeneggen.util.HttpHelper;
+import ch.ccapps.android.zeneggen.util.http.HttpHelper;
 import ch.ccapps.android.zeneggen.util.JsonParserHelper;
 
 /**

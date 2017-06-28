@@ -31,6 +31,7 @@
   <color name="yellowBrightest">#FFE082</color>
 
   <color name="white">#FFFFFF</color>
+  <color name="black">#000000</color>
   <color name="textColor">#5D4037</color>
   <color name="textColorBright">#795548</color>
   <color name="brownBright">#BCAAA4</color>

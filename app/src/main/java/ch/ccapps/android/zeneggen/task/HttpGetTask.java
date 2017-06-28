@@ -9,7 +9,7 @@ import org.codehaus.jackson.type.TypeReference;
 import java.util.HashMap;
 
 import ch.ccapps.android.zeneggen.model.MobileResponse;
-import ch.ccapps.android.zeneggen.util.HttpHelper;
+import ch.ccapps.android.zeneggen.util.http.HttpHelper;
 
 
 /**
@@ -51,7 +51,9 @@ public class HttpGetTask<R> extends AsyncTask<Void, Void, MobileResponse<R>> {
         ObjectMapper mapper = new ObjectMapper();
         try {
             events = mapper.readValue(json, new TypeReference<MobileResponse<R>>(){});
+
         } catch (Exception e) {
+            events.setSuccess(false);
             Log.e(HttpGetTask.class.getSimpleName(),"error parsing",e);
             e.printStackTrace();
         }
