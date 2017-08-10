@@ -1,24 +1,17 @@
 package ch.ccapps.android.zeneggen.activity.tourismus;
 
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import ch.ccapps.android.zeneggen.R;
 import ch.ccapps.android.zeneggen.activity.ActionBarActivity;
-import ch.ccapps.android.zeneggen.adapter.DividerItemDecoration;
 import ch.ccapps.android.zeneggen.adapter.EventAdapter;
-import ch.ccapps.android.zeneggen.adapter.SectionRecyclerAdapter;
-import ch.ccapps.android.zeneggen.model.Event;
-import ch.ccapps.android.zeneggen.model.Hotel;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
 import ch.ccapps.android.zeneggen.task.HttpGetTask;
 import ch.ccapps.android.zeneggen.util.Config;
 

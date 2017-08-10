@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
 import ch.ccapps.android.zeneggen.util.Config;
 import ch.ccapps.android.zeneggen.util.ImageCache;
 import ch.ccapps.android.zeneggen.util.ObjectSerializer;

@@ -1,11 +1,8 @@
 package ch.ccapps.android.zeneggen.task;
 
-import android.content.Context;
 import android.util.Log;
 
-import ch.ccapps.android.zeneggen.cache.UserLocalStore;
-import ch.ccapps.android.zeneggen.model.AppUser;
-import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
 import ch.ccapps.android.zeneggen.model.MobileResponse;
 import ch.ccapps.android.zeneggen.util.Config;
 import ch.ccapps.android.zeneggen.util.http.HttpApi;
@@ -29,15 +26,15 @@ public class EventParticipationRestCall {
         this.api = ZeneggenRestClient.getClient();
     }
 
-    public void participateInEvent(String mobileUuid, String eventId,final EventParticipationRestCallback callback){
+    public void participateInEvent(String mobileUuid, long eventId,final EventParticipationRestCallback callback){
         Log.i(TAG,"sending put request to participate in Event:"+ Config.IF_PARTICIPATE_EVENT);
-        Call<MobileResponse<Event>> call = api.participateEvent(mobileUuid, eventId);
+        Call<MobileResponse<Event>> call = api.participateEvent(eventId, mobileUuid);
         makeCall(callback, call);
     }
 
-    public void notParticipateInEvent(String mobileUuid, String eventId, final EventParticipationRestCallback callback){
+    public void notParticipateInEvent(String mobileUuid, long eventId, final EventParticipationRestCallback callback){
         Log.i(TAG,"sending put request to decline participation in Event:"+ Config.IF_NOT_PARTICIPATE_EVENT);
-        Call<MobileResponse<Event>> call = api.notParticipateEvent(mobileUuid, eventId);
+        Call<MobileResponse<Event>> call = api.notParticipateEvent(eventId, mobileUuid);
         makeCall(callback, call);
     }
 

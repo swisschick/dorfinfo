@@ -4,14 +4,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.IconTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
 import ch.ccapps.android.zeneggen.R;
-import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
 
 /**
  * Created by celineheldner on 21.09.15.

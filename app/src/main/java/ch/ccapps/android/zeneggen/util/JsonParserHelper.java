@@ -5,7 +5,7 @@ import org.codehaus.jackson.type.TypeReference;
 
 import java.util.List;
 
-import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
 import ch.ccapps.android.zeneggen.model.MobileResponse;
 
 /**

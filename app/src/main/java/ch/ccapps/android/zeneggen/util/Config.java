@@ -9,6 +9,7 @@ public class Config {
      * Events
      */
     public static final String IF_FUTURE_EVENTS = BuildConfig.IFBASE_STRING + "/mobile/events/future";
+    public static final String IF_FUTURE_PAST_EVENTS = BuildConfig.IFBASE_STRING + "/mobile/events/futurepast";
 
     /**
      * Profile

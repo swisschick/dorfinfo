@@ -1,55 +1,52 @@
 package ch.ccapps.android.zeneggen.util.http.callback;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.Toast;
 
 import ch.ccapps.android.zeneggen.R;
 import ch.ccapps.android.zeneggen.activity.User.EditProfileActivity;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
 import ch.ccapps.android.zeneggen.model.MobileResponse;
-import ch.ccapps.android.zeneggen.task.HttpUpdateUserProfile;
+import ch.ccapps.android.zeneggen.task.EventParticipationRestCall;
 
 /**
  * Created by celineheldner on 06.06.17.
  */
 
-public class EventParticipationCallbackImpl implements HttpUpdateUserProfile.HttpUpdateUserProfileCallback{
+public class EventParticipationCallbackImpl implements EventParticipationRestCall.EventParticipationRestCallback{
 
     private Activity activity;
-    ProgressDialog progress;
 
     private static final String TAG = EditProfileActivity.class.getSimpleName();
 
-    public EventParticipationCallbackImpl(Activity activity, ProgressDialog progress){
+    public EventParticipationCallbackImpl(Activity activity){
         this.activity = activity;
-        this.progress = progress;
+        //this.progress = progress;
     }
 
 
     @Override
-    public void onReceivedResult(MobileResponse<String> responseBody) {
+    public void onReceivedResult(MobileResponse<Event> responseBody) {
         Log.i(TAG, "received Result for user:"+responseBody.getResult());
-        dismissSpinner();
-        Toast.makeText(activity, R.string.edit_profile_successcully_saved,Toast.LENGTH_LONG).show();
+        if (responseBody.isSuccess()){
+            //TODO: save participants
+            //List<Participant> participants = responseBody.getResult().getParticipants();
+        }
+        Toast.makeText(activity, R.string.event_participation_successful,Toast.LENGTH_LONG).show();
         activity.finish();
     }
 
     @Override
-    public void onReceivedError(String  error) {
-        dismissSpinner();
+    public void onServerNotReachable() {
+        Toast.makeText(activity, R.string.event_participation_not_successful,Toast.LENGTH_LONG).show();
         Log.i(TAG, "error!!");
     }
 
     @Override
     public void onCouldNotSend() {
-        dismissSpinner();
-        Toast.makeText(activity, R.string.edit_profile_error_saving_profile,Toast.LENGTH_LONG).show();
+        Toast.makeText(activity, R.string.general_no_network,Toast.LENGTH_LONG).show();
         Log.i(TAG, "Error no connection");
     }
 
-
-    private void dismissSpinner(){
-        progress.dismiss();
-    }
 }

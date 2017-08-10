@@ -1,7 +1,8 @@
-package ch.ccapps.android.zeneggen.model;
+package ch.ccapps.android.zeneggen.model.db.entity;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -10,12 +11,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import ch.ccapps.android.zeneggen.model.db.DateConverter;
+
 /**
  * Created by celineheldner on 08.09.15.
  */
 @SuppressWarnings("DefaultFileTemplate")
+@Entity
+@TypeConverters(DateConverter.class)
 public class Event implements Serializable{
 
+    @PrimaryKey
     private long eventId;
     private Date startDate;
     private Date endDate;
@@ -37,12 +43,12 @@ public class Event implements Serializable{
 
 
     String imageName;
-    @NonNull
-    List<Participant> participants = new ArrayList<>();
-    int anonymParticipants = 0;
+//    @NonNull
+//    List<Participant> participants = new ArrayList<>();
+    public int anonymParticipants = 0;
 
-    @NonNull
-    List<Participant> nonParticipants = new ArrayList<>();
+//    @NonNull
+//    List<Participant> nonParticipants = new ArrayList<>();
     int anonymNonParticipants = 0;
 
 
@@ -59,8 +65,8 @@ public class Event implements Serializable{
         this.eventId = id;
         this.organizedBy = organizedByName;
         this.organizerPhone = orgnizerPhone;
-        this.participants.addAll(participants);
-        this.nonParticipants.addAll(nonParticipants);
+//        this.participants.addAll(participants);
+//        this.nonParticipants.addAll(nonParticipants);
     }
 
     public Event(long id, String location, String title, String description, Date start, int nbrParticip){
@@ -126,29 +132,29 @@ public class Event implements Serializable{
         return location;
     }
 
-    public List<Participant> getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(List<Participant> participants) {
-        this.participants = participants;
-    }
-
-    public int getAnonymParticipants() {
-        return anonymParticipants;
-    }
-
-    public void setAnonymParticipants(int anonymParticipants) {
-        this.anonymParticipants = anonymParticipants;
-    }
-
-    public List<Participant> getNonParticipants() {
-        return nonParticipants;
-    }
-
-    public void setNonParticipants(List<Participant> nonParticipants) {
-        this.nonParticipants = nonParticipants;
-    }
+//    public List<Participant> getParticipants() {
+//        return participants;
+//    }
+//
+//    public void setParticipants(List<Participant> participants) {
+//        this.participants = participants;
+//    }
+//
+//    public int getAnonymParticipants() {
+//        return anonymParticipants;
+//    }
+//
+//    public void setAnonymParticipants(int anonymParticipants) {
+//        this.anonymParticipants = anonymParticipants;
+//    }
+//
+//    public List<Participant> getNonParticipants() {
+//        return nonParticipants;
+//    }
+//
+//    public void setNonParticipants(List<Participant> nonParticipants) {
+//        this.nonParticipants = nonParticipants;
+//    }
 
     public int getAnonymNonParticipants() {
         return anonymNonParticipants;
@@ -159,7 +165,7 @@ public class Event implements Serializable{
     }
 
     public int getNbrParticipants(){
-        return this.anonymParticipants + this.participants.size();
+        return 0;
     }
 
     @Nullable
@@ -212,13 +218,13 @@ public class Event implements Serializable{
     public static List<Event> initialEvents(){
         List<Event> events = new ArrayList<>();
         List<Participant> participants = new ArrayList<>();
-        participants.add(new Participant("Shawna"));
-        participants.add(new Participant("Nick"));
-        participants.add(new Participant("Percy"));
+        participants.add(new Participant("Shawna",1));
+        participants.add(new Participant("Nick",2));
+        participants.add(new Participant("Percy",3));
         List<Participant> nonParticips = new ArrayList<>();
-        nonParticips.add(new Participant("Cindy"));
-        nonParticips.add(new Participant("Stef"));
-        nonParticips.add(new Participant("Kelly"));
+        nonParticips.add(new Participant("Cindy",4));
+        nonParticips.add(new Participant("Stef",5));
+        nonParticips.add(new Participant("Kelly",6));
         events.add(new Event(1L,"Mehrzweckhalle","Unihockey Turnier", "", new Date(),3));
         events.add(new Event(2L,"Burgerhaus","SSC GV", "GV des Ski und Sport Clubs." +
                 " Die GV hat dieses Jahr das Thema Doping." +

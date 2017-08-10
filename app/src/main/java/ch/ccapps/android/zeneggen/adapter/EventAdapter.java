@@ -1,7 +1,5 @@
 package ch.ccapps.android.zeneggen.adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +9,8 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import ch.ccapps.android.zeneggen.R;
-import ch.ccapps.android.zeneggen.activity.tourismus.EventActivity;
 import ch.ccapps.android.zeneggen.adapter.holder.EventViewHolder;
-import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
 
 /**
  * Created by celineheldner on 04.08.15.
@@ -39,10 +36,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(@NonNull View v) {
-                Context context = v.getContext();
+                /*Context context = v.getContext();
                 Intent intent = new Intent(context, EventActivity.class);
                 intent.putExtra(EventActivity.EVENT_KEY,event);
-                context.startActivity(intent);
+                context.startActivity(intent);*/
             }
         });
     }

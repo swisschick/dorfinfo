@@ -13,7 +13,7 @@ import com.joanzapata.android.iconify.Iconify;
 import java.io.ByteArrayOutputStream;
 
 import ch.ccapps.android.zeneggen.R;
-import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
 import ch.ccapps.android.zeneggen.util.Config;
 
 /**

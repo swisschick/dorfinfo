@@ -2,7 +2,6 @@ package ch.ccapps.android.zeneggen.activity.tourismus;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +21,8 @@ import ch.ccapps.android.zeneggen.adapter.holder.Event2ViewHolder;
 import ch.ccapps.android.zeneggen.adapter.holder.ViewHolder;
 import ch.ccapps.android.zeneggen.cache.EventLocalStore;
 import ch.ccapps.android.zeneggen.fragment.TabSectionListFragment;
-import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
+import ch.ccapps.android.zeneggen.model.db.AppDatabase;
 import ch.ccapps.android.zeneggen.task.HttpGetListTask;
 import ch.ccapps.android.zeneggen.util.Config;
 
@@ -44,8 +44,10 @@ public class Events2Activity extends ActionTabBarActivity
         ImageLoader.getInstance().init(config);
 
         HashMap<String, String> params = new HashMap<>();
+        params.put("maxNbrFuture","3");
+        params.put("maxNbrPast","3");
         HttpGetListTask<Event> httpTask =
-                new HttpGetListTask<>(this, Config.IF_FUTURE_EVENTS, params, Event.class);
+                new HttpGetListTask<>(this, Config.IF_FUTURE_PAST_EVENTS, params, Event.class);
         httpTask.execute();
 
         sectionedEvents = EventLocalStore.retrieveEvents(this);
@@ -71,6 +73,8 @@ public class Events2Activity extends ActionTabBarActivity
         if (result != null) {
             sectionedEvents = EventLocalStore.orderedEventFromLocalStore(result);
             Log.e(TAG,"received result:"+ sectionedEvents);
+
+            AppDatabase.getDatabaseInstance(this).eventModel().insertOrReplaceEvents((Event[])result.toArray());
             EventLocalStore.saveEvents(this, sectionedEvents);
             //HotelLocalStore.saveHotelImages(sectionedEvents, this);
             setupViewPager();

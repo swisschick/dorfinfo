@@ -65,9 +65,6 @@
             android:name=".activity.tourismus.DriveToActivity"
             android:label="@string/title_activity_drive_to" />
         <activity
-            android:name=".activity.tourismus.EventsActivity"
-            android:label="@string/title_activity_events" />
-        <activity
             android:name=".activity.tourismus.Events2Activity"
             android:label="@string/title_activity_events" />
         <activity
@@ -80,11 +77,8 @@
             android:name=".activity.gemeinde.NumbersActivity"
             android:label="@string/title_activity_numbers" />
         <activity
-            android:name=".activity.tourismus.EventActivity"
-            android:label="@string/title_activity_event" />
-        <activity
             android:name=".activity.tourismus.EventDetailActivity"
-            android:parentActivityName=".activity.tourismus.EventActivity"
+            android:parentActivityName=".activity.tourismus.Events2Activity"
             android:label="@string/title_activity_event_detail" />
         <activity android:name=".activity.User.RegisterActivity" />
         <activity android:name=".activity.carshare.CreateCarShareActivity" />

@@ -1,5 +1,8 @@
 package ch.ccapps.android.zeneggen.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -11,8 +14,10 @@ import java.util.UUID;
  * Created by celineheldner on 02.11.16.
  */
 
+@Entity
 public class AppUser implements Serializable{
     //Used to identify others.
+    @PrimaryKey
     private long id;
     private String email;
 

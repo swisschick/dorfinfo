@@ -22,7 +22,6 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
@@ -37,9 +36,15 @@ import com.joanzapata.android.iconify.Iconify;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ch.ccapps.android.zeneggen.R;
-import ch.ccapps.android.zeneggen.model.Event;
+import ch.ccapps.android.zeneggen.cache.UserLocalStore;
+import ch.ccapps.android.zeneggen.model.AppUser;
+import ch.ccapps.android.zeneggen.model.db.entity.Event;
+import ch.ccapps.android.zeneggen.task.EventParticipationRestCall;
 import ch.ccapps.android.zeneggen.util.Config;
+import ch.ccapps.android.zeneggen.util.http.callback.EventParticipationCallbackImpl;
 
 public class EventDetailActivity extends AppCompatActivity {
 
@@ -48,12 +53,17 @@ public class EventDetailActivity extends AppCompatActivity {
     private Bundle bundle;
     private Event mEvent;
 
-    private TextView contactTV;
-    private TextView telTV;
-    private TextView descrTV;
-    private TextView locationTV;
-    private TextView linkTV;
-    private TextView dateTV;
+    @BindView(R.id.event_organisor)  TextView contactTV;
+    @BindView(R.id.tel)  TextView telTV;
+    @BindView(R.id.event_description_tv) TextView descrTV;
+    @BindView(R.id.event_location) TextView locationTV;
+    @BindView(R.id.link) TextView linkTV;
+    @BindView(R.id.event_time_tv) TextView dateTV;
+
+
+    EventParticipationRestCall eventParticipationRestCall;
+    private EventParticipationCallbackImpl eventParticipationCallback;
+    private AppUser user;
 
 
     @Override
@@ -65,9 +75,17 @@ public class EventDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        user = UserLocalStore.retrieveUser(this);
+
         bundle = getIntent().getExtras();
 
+        eventParticipationCallback = new EventParticipationCallbackImpl(this);
+        this.eventParticipationRestCall = new EventParticipationRestCall();
+
+        ButterKnife.bind(this);
+
         if (bundle != null){
+
             mEvent = (Event)bundle.getSerializable(EXTRA_EVENT);
             final String eventTitle = mEvent.getTitle();
 
@@ -78,21 +96,11 @@ public class EventDetailActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     private void setupUI(){
         FloatingActionButton pa_ab = (FloatingActionButton)findViewById(R.id.participate_ab);
         pa_ab.setImageDrawable(new IconDrawable(this, Iconify.IconValue.fa_check).colorRes(R.color.white));
-        FloatingActionButton dont_pa_ab  = (FloatingActionButton)findViewById(R.id.dont_participate_ab);
-        dont_pa_ab.setImageDrawable(new IconDrawable(this, Iconify.IconValue.fa_circle_o_notch).colorRes(R.color.white).sizeDp(40));
-
-        contactTV = (TextView) findViewById(R.id.event_organisor);
-        descrTV = (TextView) findViewById(R.id.event_description_tv);
-        locationTV = (TextView) findViewById(R.id.event_location);
-        telTV = (TextView) findViewById(R.id.tel);
-        linkTV = (TextView) findViewById(R.id.link);
-        dateTV = (TextView) findViewById(R.id.event_time_tv);
 
         String eventTime = createEventTimeText();
         dateTV.setText(eventTime);
@@ -182,11 +190,7 @@ public class EventDetailActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void onParticipateClicked(){
-
-    }
-
-    public void onNotParticipateClicked(){
-
+    public void onParticipateClicked(View v){
+        this.eventParticipationRestCall.participateInEvent(user.getMobileUuid(),mEvent.getEventId(),eventParticipationCallback);
     }
 }
