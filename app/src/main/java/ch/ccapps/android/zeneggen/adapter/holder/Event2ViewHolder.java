@@ -13,6 +13,7 @@ import com.joanzapata.android.iconify.Iconify;
 import java.io.ByteArrayOutputStream;
 
 import ch.ccapps.android.zeneggen.R;
+import ch.ccapps.android.zeneggen.model.EventMobile;
 import ch.ccapps.android.zeneggen.model.db.entity.Event;
 import ch.ccapps.android.zeneggen.util.Config;
 
@@ -20,9 +21,9 @@ import ch.ccapps.android.zeneggen.util.Config;
  * Created by celineheldner on 31.10.16.
  */
 
-public class Event2ViewHolder extends ViewHolder<Event> {
+public class Event2ViewHolder extends ViewHolder<EventMobile> {
 
-    public Event mEvent;
+    public EventMobile mEvent;
 
     @NonNull
     public final View mView;
@@ -48,20 +49,20 @@ public class Event2ViewHolder extends ViewHolder<Event> {
     }
 
     @Override
-    public void bindData(@NonNull Event data) {
+    public void bindData(@NonNull EventMobile data) {
         mEvent = data;
-        if (mEvent.getImageName() == null || mEvent.getImageName().isEmpty()) {
+        if (mEvent.getEvent().getImageName() == null || mEvent.getEvent().getImageName().isEmpty()) {
             mImageView.setImageDrawable(new IconDrawable(mImageView.getContext(), Iconify.IconValue.fa_calendar).color(R.color.yellow).colorRes(R.color.colorPrimary).sizeDp(80));
         } else {
             Glide.with(mImageView.getContext())
-                    .load(Config.IF_EVENTS_IMAGES + mEvent.getImageName())
+                    .load(Config.IF_EVENTS_IMAGES + mEvent.getEvent().getImageName())
                     .fitCenter()
                     .into(mImageView);
         }
 
 
-        mTextView.setText(data.getTitle());
-        mSubText.setText(mEvent.getDescription());
+        mTextView.setText(data.getEvent().getTitle());
+        mSubText.setText(mEvent.getEvent().getDescription());
     }
 
     @Override

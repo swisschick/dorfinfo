@@ -21,19 +21,21 @@ import ch.ccapps.android.zeneggen.adapter.holder.Event2ViewHolder;
 import ch.ccapps.android.zeneggen.adapter.holder.ViewHolder;
 import ch.ccapps.android.zeneggen.cache.EventLocalStore;
 import ch.ccapps.android.zeneggen.fragment.TabSectionListFragment;
+import ch.ccapps.android.zeneggen.model.EventMobile;
 import ch.ccapps.android.zeneggen.model.db.entity.Event;
 import ch.ccapps.android.zeneggen.model.db.AppDatabase;
 import ch.ccapps.android.zeneggen.task.HttpGetListTask;
 import ch.ccapps.android.zeneggen.util.Config;
+import ch.ccapps.dorfapp.EventCommon;
 
 public class Events2Activity extends ActionTabBarActivity
-        implements HttpGetListTask.HttpGetCallback<Event>,
-        TabSectionListFragment.CustomSectionListInterface<Event>,
-        TabSectionListFragment.TabSectionListInterface<Event> {
+        implements HttpGetListTask.HttpGetCallback<EventCommon>,
+        TabSectionListFragment.CustomSectionListInterface<EventMobile>,
+        TabSectionListFragment.TabSectionListInterface<EventMobile> {
 
     private static final String TAG = Events2Activity.class.getSimpleName();
 
-    private HashMap<String, HashMap<String, List<Event>>> sectionedEvents;
+    private HashMap<String, HashMap<String, List<EventMobile>>> sectionedEvents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +48,11 @@ public class Events2Activity extends ActionTabBarActivity
         HashMap<String, String> params = new HashMap<>();
         params.put("maxNbrFuture","3");
         params.put("maxNbrPast","3");
-        HttpGetListTask<Event> httpTask =
-                new HttpGetListTask<>(this, Config.IF_FUTURE_PAST_EVENTS, params, Event.class);
+        HttpGetListTask<EventCommon> httpTask =
+                new HttpGetListTask<>(this, Config.IF_FUTURE_PAST_EVENTS, params, EventCommon.class);
         httpTask.execute();
 
-        sectionedEvents = EventLocalStore.retrieveEvents(this);
+        //TODO: sectionedEvents = EventLocalStore.retrieveEvents(this);
         Log.d(TAG, "on create events: " + sectionedEvents);
 
     }
@@ -58,7 +60,7 @@ public class Events2Activity extends ActionTabBarActivity
     @Override
     protected void setupViewPager() {
         adapter.removeAllFragments();
-        sectionedEvents = EventLocalStore.retrieveEvents(this);
+        //TODO: sectionedEvents = EventLocalStore.retrieveEvents(this);
         Log.d(TAG, "setup view pager sec events:" + sectionedEvents);
         for (String hoteltype : sectionedEvents.keySet()) {
             adapter.addFragment(TabSectionListFragment.newInstance(hoteltype, R.layout.fragment_hotel_list), hoteltype);
@@ -68,15 +70,14 @@ public class Events2Activity extends ActionTabBarActivity
     }
 
     @Override
-    public void onReceivedResult(List<Event> result) {
+    public void onReceivedResult(List<EventCommon> result) {
         Log.e(TAG,"received result:"+result);
         if (result != null) {
-            sectionedEvents = EventLocalStore.orderedEventFromLocalStore(result);
+            //TODO:sectionedEvents = EventLocalStore.orderedEventFromLocalStore(result);
             Log.e(TAG,"received result:"+ sectionedEvents);
 
             AppDatabase.getDatabaseInstance(this).eventModel().insertOrReplaceEvents((Event[])result.toArray());
-            EventLocalStore.saveEvents(this, sectionedEvents);
-            //HotelLocalStore.saveHotelImages(sectionedEvents, this);
+            //TODO: EventLocalStore.saveEvents(this, sectionedEvents);
             setupViewPager();
         } else {
             Log.e(TAG, "Hotel List from server was null");
@@ -96,7 +97,7 @@ public class Events2Activity extends ActionTabBarActivity
     }
 
     @Override
-    public ViewHolder<Event> createViewHolderForData(@NonNull ViewGroup parent) {
+    public ViewHolder<EventMobile> createViewHolderForData(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item, parent, false);
         //view.setBackgroundResource(mBackground);
@@ -105,7 +106,7 @@ public class Events2Activity extends ActionTabBarActivity
     }
 
     @Override
-    public void onItemInSecRecViewClicked(Event dataobject) {
+    public void onItemInSecRecViewClicked(EventMobile dataobject) {
         Log.i(TAG,"eventtype is:"+dataobject);
         Intent intent = new Intent(this, EventDetailActivity.class);
         intent.putExtra(EventDetailActivity.EXTRA_EVENT,dataobject);
@@ -113,14 +114,14 @@ public class Events2Activity extends ActionTabBarActivity
     }
 
     @Override
-    public HashMap<String, List<Event>> fillWithItemMap(String hoteltype) {
+    public HashMap<String, List<EventMobile>> fillWithItemMap(String hoteltype) {
         Log.i(TAG,"eventtype is:"+hoteltype);
         return sectionedEvents.get(hoteltype);
     }
 
     @NonNull
     @Override
-    public TabSectionListFragment.TabSectionListInterface<Event> getTabSectionListInterface() {
+    public TabSectionListFragment.TabSectionListInterface<EventMobile> getTabSectionListInterface() {
         return this;
     }
 

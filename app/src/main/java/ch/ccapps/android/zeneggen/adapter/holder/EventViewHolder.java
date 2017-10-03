@@ -47,7 +47,7 @@ public class EventViewHolder extends RecyclerView.ViewHolder  {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         eventDateTV.setText(sdf.format(event.getStartDate()));
         eventLocationTV.setText(event.getLocation());
-        eventNbrPersonTV.setText(event.getNbrParticipants()+"");
+        //eventNbrPersonTV.setText(event.getNbrParticipants()+"");
     }
 
     @NonNull

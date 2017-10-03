@@ -28,8 +28,10 @@ import ch.ccapps.android.zeneggen.model.db.dao.AppUserDao;
 import ch.ccapps.android.zeneggen.model.db.dao.EventDao;
 import ch.ccapps.android.zeneggen.model.db.dao.EventParticipationDao;
 import ch.ccapps.android.zeneggen.model.db.dao.ParticipantDao;
+import ch.ccapps.android.zeneggen.model.db.entity.EventParticipation;
+import ch.ccapps.android.zeneggen.model.db.entity.Participant;
 
-@Database(entities = {Event.class, AppUser.class}, version = 1)
+@Database(entities = {Event.class, AppUser.class, Participant.class, EventParticipation.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;

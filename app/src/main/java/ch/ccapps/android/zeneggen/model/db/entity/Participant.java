@@ -1,6 +1,7 @@
 package ch.ccapps.android.zeneggen.model.db.entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -23,7 +24,7 @@ public class Participant implements Serializable{
 
     public Participant(){}
 
-
+    @Ignore
     public Participant(String user, long id){
         this.profileName = user;
         this.participantId = id;

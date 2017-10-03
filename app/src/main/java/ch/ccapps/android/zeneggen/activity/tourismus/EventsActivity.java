@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.HashMap;
 import java.util.List;
@@ -54,4 +55,8 @@ public class EventsActivity extends ActionBarActivity implements HttpGetTask.Htt
     public void onReceivedError(String errorCode, String errorMessage, String errorTitle) {
 
     }
+
+    public void onParticipateClick(View view){}
+    public void onNotParticipateClick(View view){}
+    public void onNotSureClick(View view){}
 }

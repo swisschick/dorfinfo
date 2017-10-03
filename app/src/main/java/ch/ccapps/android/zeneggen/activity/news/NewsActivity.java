@@ -32,6 +32,7 @@ public class NewsActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
 
 }

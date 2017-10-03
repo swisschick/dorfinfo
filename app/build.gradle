@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.1'
 
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -18,7 +18,7 @@ android {
         applicationId "ch.ccapps.android.zeneggen"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
@@ -32,7 +32,7 @@ android {
         debug{
             minifyEnabled false
             buildConfigField "boolean", "LOGGING", "true"
-            buildConfigField "String", "IFBASE_STRING", "\"http://172.20.10.3:9000\""
+            buildConfigField "String", "IFBASE_STRING", "\"http://192.168.1.22:9000\""
         }
     }
 }
@@ -58,11 +58,14 @@ apt {
 repositories {
     jcenter()
     maven { url 'https://maven.google.com' }
+    mavenLocal()
 }
 
 
-ext.supportLibraryVersion = '25.3.1'
+ext.supportLibraryVersion = '26.0.0'
 ext.junitVersion = '4.12'
+ext.archcomponentVersion = '1.0.0-alpha8'
+
 dependencies {
 
     compile "com.android.support:design:$supportLibraryVersion"
@@ -71,13 +74,11 @@ dependencies {
     compile "com.android.support:cardview-v7:$supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
 
-    compile "android.arch.lifecycle:runtime:1.0.0-alpha3"
-    compile "android.arch.lifecycle:extensions:1.0.0-alpha3"
-    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha3"
-    compile "android.arch.persistence.room:runtime:1.0.0-alpha3"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha4"
+    compile "android.arch.lifecycle:extensions:$archcomponentVersion"
+    compile "android.arch.persistence.room:runtime:$archcomponentVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$archcomponentVersion"
 
-    apt "android.arch.persistence.room:compiler:1.0.0-alpha4"
+    apt "android.arch.persistence.room:compiler:$archcomponentVersion"
 
 
     apt "org.androidannotations:androidannotations:$AAVersion"
@@ -95,6 +96,8 @@ dependencies {
     compile "com.android.support:support-annotations:$supportLibraryVersion"
     compile 'com.intellij:annotations:12.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    compile 'ch.celine.sample:testttt-sample:1.1'
+    compile 'ch.ccapps.clientserver:dorfAppClientServerInterface:1.1'
 
 
     //Tests

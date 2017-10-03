@@ -96,21 +96,21 @@ public class EventLocalStore {
 
     public static HashMap<String, HashMap<String, List<Event>>> retrieveEvents(Context ctxt) {
         SharedPreferences preferences = ctxt.getSharedPreferences(EVENT_STORE, Context.MODE_PRIVATE);
-        String hotelSerialized = preferences.getString(EVENT_KEY, null);
-        HashMap<String, HashMap<String, List<Event>>> hotels = null;
-        if (hotelSerialized != null) {
+        String eventsSerialized = preferences.getString(EVENT_KEY, null);
+        HashMap<String, HashMap<String, List<Event>>> events = new HashMap<>();
+        if (eventsSerialized != null) {
             try {
-                hotels = (HashMap<String, HashMap<String, List<Event>>>) ObjectSerializer.deserialize(hotelSerialized);
+                events = (HashMap<String, HashMap<String, List<Event>>>) ObjectSerializer.deserialize(eventsSerialized);
             } catch (Exception e) {
                 Log.e("EventLocalStore", "Error fetching Event Local Store", e);
                 e.printStackTrace();
             }
         } else {
-            hotels = getDebugData();
-            saveEvents(ctxt, hotels);
+            events = getDebugData();
+            saveEvents(ctxt, events);
         }
 
-        return hotels;
+        return events;
     }
 
 

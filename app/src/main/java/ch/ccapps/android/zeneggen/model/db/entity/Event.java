@@ -43,20 +43,14 @@ public class Event implements Serializable{
 
 
     String imageName;
-//    @NonNull
-//    List<Participant> participants = new ArrayList<>();
+
     public int anonymParticipants = 0;
-
-//    @NonNull
-//    List<Participant> nonParticipants = new ArrayList<>();
-    int anonymNonParticipants = 0;
-
 
 
     public Event(){}
 
     public Event(long id, String location, String title, String description, Date start,
-                 int nbrParticip, String organizedByName, String orgnizerPhone, List<Participant> participants, List<Participant> nonParticipants){
+                 int nbrParticip, String organizedByName, String orgnizerPhone, List<Participant> participants){
         this.location = location;
         this.title = title;
         this.description = description;
@@ -65,8 +59,6 @@ public class Event implements Serializable{
         this.eventId = id;
         this.organizedBy = organizedByName;
         this.organizerPhone = orgnizerPhone;
-//        this.participants.addAll(participants);
-//        this.nonParticipants.addAll(nonParticipants);
     }
 
     public Event(long id, String location, String title, String description, Date start, int nbrParticip){
@@ -132,40 +124,13 @@ public class Event implements Serializable{
         return location;
     }
 
-//    public List<Participant> getParticipants() {
-//        return participants;
-//    }
-//
-//    public void setParticipants(List<Participant> participants) {
-//        this.participants = participants;
-//    }
-//
-//    public int getAnonymParticipants() {
-//        return anonymParticipants;
-//    }
-//
-//    public void setAnonymParticipants(int anonymParticipants) {
-//        this.anonymParticipants = anonymParticipants;
-//    }
-//
-//    public List<Participant> getNonParticipants() {
-//        return nonParticipants;
-//    }
-//
-//    public void setNonParticipants(List<Participant> nonParticipants) {
-//        this.nonParticipants = nonParticipants;
-//    }
 
-    public int getAnonymNonParticipants() {
-        return anonymNonParticipants;
+    public int getAnonymParticipants() {
+        return anonymParticipants;
     }
 
-    public void setAnonymNonParticipants(int anonymNonParticipants) {
-        this.anonymNonParticipants = anonymNonParticipants;
-    }
-
-    public int getNbrParticipants(){
-        return 0;
+    public void setAnonymParticipants(int anonymParticipants) {
+        this.anonymParticipants = anonymParticipants;
     }
 
     @Nullable
@@ -221,15 +186,10 @@ public class Event implements Serializable{
         participants.add(new Participant("Shawna",1));
         participants.add(new Participant("Nick",2));
         participants.add(new Participant("Percy",3));
-        List<Participant> nonParticips = new ArrayList<>();
-        nonParticips.add(new Participant("Cindy",4));
-        nonParticips.add(new Participant("Stef",5));
-        nonParticips.add(new Participant("Kelly",6));
         events.add(new Event(1L,"Mehrzweckhalle","Unihockey Turnier", "", new Date(),3));
         events.add(new Event(2L,"Burgerhaus","SSC GV", "GV des Ski und Sport Clubs." +
                 " Die GV hat dieses Jahr das Thema Doping." +
-                " Die GV findet um 19:00 im Burgerhaus statt.", new Date(),0,"SSC Zeneggen","079 837 55 78",participants,
-                nonParticips));
+                " Die GV findet um 19:00 im Burgerhaus statt.", new Date(),0,"SSC Zeneggen","079 837 55 78",participants));
         events.add(new Event(3L,"Gemeindebüro","Abstimmungen", "", new Date(),10));
         events.add(new Event(4L,"Bistro","Cocktailparty", "", new Date(),1));
         return events;

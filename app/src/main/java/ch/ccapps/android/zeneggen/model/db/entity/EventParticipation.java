@@ -3,6 +3,7 @@ package ch.ccapps.android.zeneggen.model.db.entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import ch.ccapps.android.zeneggen.model.User;
@@ -12,16 +13,16 @@ import ch.ccapps.android.zeneggen.model.User;
  */
 
 @Entity(foreignKeys = {
-        @ForeignKey(entity = Event.class,
+        @ForeignKey(entity = Participant.class,
                 parentColumns = "participantId",
                 childColumns = "participant_id"),
 
-        @ForeignKey(entity = User.class,
+        @ForeignKey(entity = Event.class,
                 parentColumns = "eventId",
                 childColumns = "event_id")})
 public class EventParticipation {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public long id;
 
     @ColumnInfo(name="event_id")
@@ -33,6 +34,7 @@ public class EventParticipation {
 
     public EventParticipation(){}
 
+    @Ignore
     public EventParticipation(long eventId, long participantId){
         super();
         this.eventId = eventId;

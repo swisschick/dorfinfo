@@ -32,11 +32,6 @@ public class EventParticipationRestCall {
         makeCall(callback, call);
     }
 
-    public void notParticipateInEvent(String mobileUuid, long eventId, final EventParticipationRestCallback callback){
-        Log.i(TAG,"sending put request to decline participation in Event:"+ Config.IF_NOT_PARTICIPATE_EVENT);
-        Call<MobileResponse<Event>> call = api.notParticipateEvent(eventId, mobileUuid);
-        makeCall(callback, call);
-    }
 
     private void makeCall(final EventParticipationRestCallback callback, Call<MobileResponse<Event>> call) {
         call.enqueue(new Callback<MobileResponse<Event>>() {

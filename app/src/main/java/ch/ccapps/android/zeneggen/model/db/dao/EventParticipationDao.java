@@ -18,7 +18,8 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @Dao
 public abstract class EventParticipationDao {
 
-    public abstract List<Participant> findParticipantForEvent(long eventId);
+    @Query("select * from EventParticipation where event_id = :eventId")
+    public abstract List<EventParticipation> findParticipantForEvent(long eventId);
 
     @Insert(onConflict = REPLACE)
     public abstract void insertOrReplaceEventparticipation(EventParticipation... participants);
@@ -27,23 +28,20 @@ public abstract class EventParticipationDao {
     public abstract void deleteAllFromEvent(long eventId);
 
 
-    public void replaceParticipantsForEvent(List<Participant> participants, long eventId) {
-        insertOrReplaceParticipant((Participant[]) participants.toArray());
 
-        List<EventParticipation> eventParticipations = new ArrayList<>();
-        for (Participant part : participants) {
-            eventParticipations.add(new EventParticipation(eventId, part.getParticipantId()));
+
+    public void replaceParticipantsForEvent(List<Participant> participants, long eventId) {
+        EventParticipation[] eventParticipations1 = new EventParticipation[participants.size()];
+        for (int i = 0; i < participants.size(); i++) {
+            eventParticipations1[i] = new EventParticipation(eventId, participants.get(i).getParticipantId());
         }
         deleteAllFromEvent(eventId);
-        insertOrReplaceEventparticipation((EventParticipation[]) eventParticipations.toArray());
+        insertOrReplaceEventparticipation(eventParticipations1);
     }
 
     public void addParticipantForEvent(Participant participant, long eventId) {
-        insertOrReplaceParticipant(participant);
         EventParticipation eventParticipation = new EventParticipation(eventId, participant.getParticipantId());
         insertOrReplaceEventparticipation(eventParticipation);
     }
 
-    @Insert(onConflict = REPLACE)
-    public abstract void insertOrReplaceParticipant(Participant... participants);
 }
